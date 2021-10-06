@@ -7,39 +7,10 @@
 )
 
 (defrule mostrarAreaA
-    (rectangulo A ?base ?altura)
+    (rectangulo ?letra ?base ?altura)
     ?indice<-(areaTotal ?)
     =>
     (assert(areaTotal1 (* ?base ?altura)))
-    (printout t "El area de A es: " (* ?base ?altura) crlf)
+    (printout t "El area de "?letra" es: " (* ?base ?altura) crlf)
     (retract ?indice)
 )
-
-(defrule mostrarAreaB
-    (rectangulo B ?base ?altura)
-    ?indice<-(areaTotal1 ?)
-    =>
-    (assert(areaTotal2 (* ?base ?altura)))
-    (printout t "El area de B es: " (* ?base ?altura) crlf)
-    (retract ?indice)
-)
-
-(defrule mostrarAreaC
-    (rectangulo C ?base ?altura)
-    ?indice<-(areaTotal2 ?)
-    =>
-    (assert(areaTotal3 (* ?base ?altura)))
-    (printout t "El area de C es: " (* ?base ?altura) crlf)
-    (retract ?indice)
-)
-
-(defrule mostrarAreaD
-    (rectangulo D ?base ?altura)
-    ?indice<-(areaTotal3 ?)
-    =>
-    (assert(areaTotal4 (* ?base ?altura)))
-    (printout t "El area de D es: " (* ?base ?altura) crlf)
-    (retract ?indice)
-)
-
-;NO SE COMO SUMARLE A LA VARIABLE "GLOBAL" mirar a ver
