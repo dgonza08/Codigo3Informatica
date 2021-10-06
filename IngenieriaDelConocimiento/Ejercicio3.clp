@@ -8,11 +8,7 @@
 
 (defrule mostrarArea
     (rectangulo ?letra ?base ?altura)
-    (areaTotal ?areaFuturaTotal)
-    ?indice<-(areaTotal1 ?)
+    (areaTotal ?numeroDeAreaTotal)
     =>
-    (assert(areaTotal1 (+ ?areaFuturaTotal (* ?base ?altura))))
-    (assert(areaTotal ?areaQueVaAAnyadirse))
     (printout t "El area de "?letra" es: " (* ?base ?altura) crlf)
-    (retract ?indice)
 )
