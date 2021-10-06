@@ -9,7 +9,6 @@
 (defrule mostrarArea
     (rectangulo ?letra ?base ?altura)
     (areaTotal ?areaFuturaTotal)
-    (areaTotal1 ?areaQueVaAAnyadirse)
     ?indice<-(areaTotal1 ?)
     =>
     (assert(areaTotal1 (+ ?areaFuturaTotal (* ?base ?altura))))
