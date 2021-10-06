@@ -12,6 +12,9 @@
     =>
     ;(assert(areaTotal1 (* ?base ?altura)))
     (assert(areaTotal1 (+ ?areaFuturaTotal (* ?base ?altura))))
+    (areaTotal1 ?areaQueVaAAnyadirse)
+    ?indice<-(areaTotal1 ?)
+    (assert(areaTotal ?areaQueVaAAnyadirse))
     (printout t "El area de "?letra" es: " (* ?base ?altura) crlf)
-    ;(retract ?indice)
+    (retract ?indice)
 )
