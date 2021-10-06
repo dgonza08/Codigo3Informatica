@@ -11,7 +11,6 @@
     ;?indice<-(areaTotal ?)
     =>
     (assert(areaTotal1 (* ?base ?altura)))
-    (assert(areaTotal (+ ?areaTotal1 ?areaTotal)))
     (printout t "El area de "?letra" es: " (* ?base ?altura) crlf)
     ;(retract ?indice)
 )
