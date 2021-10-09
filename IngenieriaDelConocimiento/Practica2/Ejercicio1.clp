@@ -9,10 +9,13 @@
     (printout t "Numero tiene un valor de "?numero crlf)
 )
 
+;ESTA MAL MIRAR LOGICA
+
 (defrule condicion
     (lista $?principio ?numero $?final)
-    auxiliarABorrar<-(auxiliar ?aux)
+    ?auxiliarABorrar<-(auxiliar ?aux)
     (test(< ?numero ?aux))
     =>
-    (assert auxiliar )
+    (assert auxiliar ?numero)
+    (retract ?auxiliarABorrar)
 )
