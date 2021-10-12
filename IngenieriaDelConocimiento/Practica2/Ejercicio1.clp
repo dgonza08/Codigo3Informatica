@@ -9,13 +9,8 @@
     (printout t "Numero tiene un valor de "?numero crlf)
 )
 
-;ESTA MAL MIRAR LOGICA
+;FUNCION DE ORDENACION MIRAR A VER COMO HACERLA
 
-(defrule condicion
-    (lista $?principio ?numero $?final)
-    ?auxiliarABorrar<-(auxiliar ?aux)
-    (test(< ?numero ?aux))
-    =>
-    (assert auxiliar ?numero)
-    (retract ?auxiliarABorrar)
+(deffuction comparacion
+    (?a ?b)
 )
