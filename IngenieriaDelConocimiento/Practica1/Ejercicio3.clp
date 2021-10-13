@@ -15,8 +15,8 @@
 )
 
 (defrule meterAreas
- ?rectanguloBorrar<-(rectangulo ?letra ?areaParticular)
-     ?areaBorrar<-(areaTotal ?areaFinal)
+    ?rectanguloBorrar<-(rectangulo ?letra ?areaParticular)
+    ?areaBorrar<-(areaTotal ?areaFinal)
     =>
 	(assert(areaTotal (+ ?areaFinal ?areaParticular)))
     (retract ?rectanguloBorrar)	
