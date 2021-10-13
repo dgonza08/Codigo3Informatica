@@ -1,53 +1,29 @@
 (deffacts hechos-iniciales
     (lista 3 2 27 1 31 10 9 42)
-    (auxiliar 0)
-    (iteracion 0)
-    (longitud 0) ;Al final se almacena en longitudFinal
+    (salida 1)
 )
 
-;Prueba solamente, no incluye nada de logica del ejercicio
-(defrule pruebaIncial
-    (lista $?principio ?numero $?final)
+(defrule imprimirInicial
+    (lista $?elementos)
+    ?salidaBorrar<-(salida ?salida)
     =>
-    (printout t "Numero tiene un valor de "?numero crlf)
+    (if (> ?salida 0) then
+        (printout t "La lista inicial es: " $?elementos crlf)
+        (retract ?salidaBorrar)
+    )   
 )
 
-;Esta funciona bien
-(deffunction cuentaElementos
-    ($?argumentos)
-    (length $?argumentos)
-)
-
-;Funciona perfectamente
-(defrule longitud
-    (lista $?argumentos)
-    ?longitudModificar<-(longitud ?longitud)
+;Parte encargada de toda la logica del programa
+(defrule ordenarLista
+    ?listaBorrar<-(lista $?principio ?anterior ?numero $?final)
+    (test(> ?anterior ?numero))
     =>
-    (assert(longitudFinal (cuentaElementos $?argumentos)))
-    (retract ?longitudModificar)
+    (assert(lista $?principio ?numero ?anterior $?final))
+    (retract ?listaBorrar)
 )
 
-;Con esta implementacion funciona bien
-(deffunction comprobarMayor (?a ?b)
-    (if(< ?a ?b) then
-        (return ?b)
-    )
-
-    (if(> ?a ?b) then
-        (return ?a)
-    )
+(defrule imprimirFinal
+    (lista $?elementos)
+    =>
+    (printout t "La lista final es: " $?elementos crlf)
 )
-
-
-;(defrule ordenarLista
-;    ?listaBorrar<-(lista $?principio ?numero $?final)
-;    ?auxiliarBorrar<-(auxiliar ?aux)
-;    ?iteracionModificar<-(iteracion ?iteracion)
-;    (longitudFinal ?longitud)
-;    (test(< ?iteracion ?longitud))
-;    =>
-;    (assert(listaFinal $?principio (comprobarMayor ?numero ?aux) $?final))
-;    (bind ?iteracion(+ 1 ?iteracion))
-;    (retract ?auxiliarBorrar)
-;    (retract ?listaBorrar)
-;)
