@@ -1,6 +1,6 @@
 (defrule leerNombres
     =>
-    (open archivoEntrada.txt fichero)
+    (open archivoEntrada1.txt fichero)
     (assert(persona(read fichero)))
     (close fichero)
 )
