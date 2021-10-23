@@ -21,6 +21,7 @@
 
 ;Se queda en bucle infinito, mirar por que
 ;No se si es aqui, igual es en la parte de arriba
+;Tenemos que utilizar las multivariables aqui igual que en el ejercicio 1 de la practica 2
 (defrule union
     ?conjuntoBorrar<-(conjuntoConjuntoNuevo $?inicio ?anterior ?numero $?final)
     =>
