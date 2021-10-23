@@ -1,8 +1,10 @@
+;Hechos iniciales del programa
 (deffacts hechos-iniciales
     (lista 3 2 27 1 31 10 9 42)
     (salida 1)
 )
 
+;Imprime la primera lista sin ordenar
 (defrule imprimirInicial
     (lista $?elementos)
     ?salidaBorrar<-(salida ?salida)
@@ -22,6 +24,7 @@
     (retract ?listaBorrar)
 )
 
+;Se imprime por pantalla la lista compoleta ordenada
 (defrule imprimirFinal
     (lista $?elementos)
     =>
