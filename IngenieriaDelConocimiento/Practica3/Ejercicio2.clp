@@ -6,7 +6,9 @@
     (conjunto c2 A B H E M N D C P)
     (conjunto union)
     (conjunto completo)
+    (conjunto interseccion)
     (auxiliar 0)
+    (contador 0)
 )
 
 ;Se unen las dos listas independientemente de que esten repetidos o no
@@ -18,25 +20,40 @@
     (assert(conjunto completo $?cosa1 $?cosa2))
 )
 
-;Todo a y todo b
-(defrule union
-    ?conjuntoCompletoBorrar<-(conjunto completo $?inicio ?actual ?siguiente $?final)
-    ?auxiliarBorrar<-(auxiliar ?aux)
-    ?conjuntoUnionBorrar<-(conjunto interseccion $?principioInterseccion $?finalInterseccion)
-    =>
-    (if (eq ?actual ?siguiente) then
-        (assert(conjunto interseccion $?principioUnion ?actual $?finalUnion))
-        (retract ?conjuntoUnionBorrar)
-    )
-    (assert(conjunto completo $?inicio ?siguiente ?actual $?final))
-    (retract ?conjuntoCompletoBorrar)
+(deffunction longitud
+    ($?argumentos)
+    (length $?argumentos)
 )
 
-;(defrule imprimir
-;    (conjunto completo $?cosa)
-;    =>
-;    (printout t "Conjunto completo: " $?cosa crlf)
-;)
+;Todo a y todo b
+(defrule union
+    (conjunto completo $?argumentos)
+    ?conjuntoCompletoBorrar<-(conjunto completo $?inicio ?actual ?siguiente $?final)
+    ?conjuntoInterseccionBorrar<-(conjunto interseccion $?principio)
+    ?auxBorrar<-(auxiliar ?aux)
+    ?contadorBorrar<-(contador ?contador)
+    =>
+    (assert(auxiliar ?actual))
+    (retract ?auxBorrar)
+    (while (< ?contador (longitud $?argumentos)) do
+        (if (eq ?actual ?siguiente) then
+            (assert(conjutno interseccion $?principio ?actual))
+            (assert(conjunto completo $?inicio ?actual $?final))
+            (retract ?conjuntoInterseccionBorrar)
+            (retract ?conjuntoCompletoBorrar)
+        )
+        (assert(contador (+ 1 ?contador)))
+        (retract ?contadorBorrar)
+    )
+)
+
+(defrule imprimir
+    (conjunto completo $?cosa)
+    (conjunto interseccion $?cosaInterseccion)
+    =>
+    (printout t "Conjunto completo: " $?cosa crlf)
+    (printout t "Conjunto interseccion: " $?cosaInterseccion crlf)
+)
 
 ;Solo comunes de ambos a y b
 (defrule interseccion
