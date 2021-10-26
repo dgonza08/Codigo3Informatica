@@ -18,10 +18,12 @@
 ;Parte encargada de toda la logica del programa
 (defrule ordenarLista
     ?listaBorrar<-(lista $?principio ?anterior ?numero $?final)
-    (test(> ?anterior ?numero))
     =>
-    (assert(lista $?principio ?numero ?anterior $?final))
-    (retract ?listaBorrar)
+    (if (> ?anterior ?numero) then
+        (assert(lista $?principio ?numero ?anterior $?final))
+        (retract ?listaBorrar)
+    )
+    
 )
 
 ;Se imprime por pantalla la lista compoleta ordenada
