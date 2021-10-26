@@ -1,13 +1,21 @@
 ;TODO Conseguir mostrar por pantalla la union y la interseccion de 
 ; los dos conjuntos de letras 
+
+(deftemplate letra
+    (slot letrilla
+        (type SYMBOL)
+    )
+)
+
 (deffacts hechos-iniciales
     (letras A B C D E F G H I J K L M N O P)
     (conjunto c1 A B F I L E)
     (conjunto c2 A B H E M N D C P)
     (conjunto union)
-    (conjunto completo)
+    (conjunto completo) ;conjunto con todas las letras de los dos conjuntos con repeticion
+    ; A B F I L E A B H E M N D C P
     (conjunto interseccion)
-    (auxiliar 0)
+    (auxiliar)
     (contador 0)
 )
 
@@ -25,39 +33,45 @@
     (length $?argumentos)
 )
 
-;Todo a y todo b
-(defrule union
-    (conjunto completo $?argumentos)
-    ?conjuntoCompletoBorrar<-(conjunto completo $?inicio ?actual ?siguiente $?final)
-    ?conjuntoInterseccionBorrar<-(conjunto interseccion $?principio)
-    ?auxBorrar<-(auxiliar ?aux)
-    ?contadorBorrar<-(contador ?contador)
+(defrule distribuirLetras
+    (conjunto completo $?inicio ?actual $?final)
     =>
-    (assert(auxiliar ?actual))
-    (retract ?auxBorrar)
-    (while (< ?contador (longitud $?argumentos)) do
-        (if (eq ?actual ?siguiente) then
-            (assert(conjutno interseccion $?principio ?actual))
-            (assert(conjunto completo $?inicio ?actual $?final))
-            (retract ?conjuntoInterseccionBorrar)
-            (retract ?conjuntoCompletoBorrar)
-        )
-        (assert(contador (+ 1 ?contador)))
-        (retract ?contadorBorrar)
-    )
-)
-
-(defrule imprimir
-    (conjunto completo $?cosa)
-    (conjunto interseccion $?cosaInterseccion)
-    =>
-    (printout t "Conjunto completo: " $?cosa crlf)
-    (printout t "Conjunto interseccion: " $?cosaInterseccion crlf)
+    (assert(letra(letrilla ?actual)))
 )
 
 ;Solo comunes de ambos a y b
 (defrule interseccion
-    ?conjunto1Borrar<-(conjunto c1 $?inicio1 ?actual ?siguiente $?final1)
-    ?conjunto2Borrar<-(conjunto c2 $?inicio2 ?actual ?siguiente $?final2)
+    ?conjuntoCompletoBorrar<-(conjunto completo $?principio ?anterior ?siguiente $?final)
+    ?conjuntoInterseccionBorrar<-(conjunto interseccion $?inicio ?actual ?siguiente1)
     =>
+    (if (eq ?anterior ?siguiente) then
+        (assert(conjunto interseccion $?inicio ?siguiente1 ?anterior))
+        (retract ?conjuntoInterseccionBorrar)
+    )
+)
+
+;Todo a y todo b
+(defrule union
+    (letra(letrilla ?letra))
+    ?conjuntoUnionBorrar<-(conjunto union $?principio ?actual)
+    =>
+    (assert(conjunto union $?principio ?letra))
+    (retract ?conjuntoUnionBorrar)
+)
+
+(defrule imprimir
+    (contador ?count)
+    =>
+    (printout t "El conjunto union es: " crlf)
+)
+
+(defrule imprimirPrueba
+    ?letraBorrar<-(letra(letrilla ?letra))
+    =>
+    (printout t " "?letra)
+)
+
+(defrule imprimir
+    =>
+    (printout t crlf)
 )

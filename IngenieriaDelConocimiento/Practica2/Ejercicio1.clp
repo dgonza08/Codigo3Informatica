@@ -23,7 +23,6 @@
         (assert(lista $?principio ?numero ?anterior $?final))
         (retract ?listaBorrar)
     )
-    
 )
 
 ;Se imprime por pantalla la lista compoleta ordenada
