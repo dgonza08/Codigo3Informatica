@@ -1,0 +1,25 @@
+.tabla {
+    background-color: aqua;
+}
+
+.imagen1 {
+    width: 300px;
+    height: 450px;
+}
+
+.imagen2 {
+    width: 300px;
+    height: 450px;
+}
+
+.tr1 {
+    background-color: brown;
+}
+
+.tr2 {
+    background-color: cadetblue;
+}
+
+.body {
+    background-color: bisque;
+}
