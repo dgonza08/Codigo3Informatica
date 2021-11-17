@@ -1,4 +1,5 @@
 (clear)
-(load Ejercicio3.clp)
+(load Ejercicio2.clp)
 (reset)
 (run)
+(facts)
