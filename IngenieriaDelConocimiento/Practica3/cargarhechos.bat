@@ -1,5 +1,4 @@
 (clear)
-(load Ejercicio2.clp)
+(load Ejercicio3noCond.clp)
 (reset)
 (run)
-(facts)
