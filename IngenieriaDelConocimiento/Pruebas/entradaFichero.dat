@@ -1,4 +1,4 @@
-(animal (tipo perro)(edad 8))
-(animal (tipo gato)(edad 11))
-(animal (tipo zorro)(edad 5))
-(animal (tipo vaca)(edad 22))
+perro 8
+gato 11
+zorro 5
+vaca 38
