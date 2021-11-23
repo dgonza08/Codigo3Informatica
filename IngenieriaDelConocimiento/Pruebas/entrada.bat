@@ -1,5 +1,5 @@
 (clear)
-(load Ejercicio3noCond.clp)
 (reset)
+(load leerFicheros.clp)
 (run)
 (facts)
