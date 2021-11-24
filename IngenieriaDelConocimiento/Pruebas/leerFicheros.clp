@@ -1,15 +1,17 @@
-(deftemplate animal
+(deftemplate MAIN::animal
     (slot tipo
-        (default desconocido)
+        (type SYMBOL)
     )
-
     (slot edad
-        (default desconocido)
+        (type INTEGER)
     )
 )
 
-(defrule leerFichero
-    (declare (salience 1))
+(defmodule MAIN (export deftemplate animal))
+(defmodule LEER (import MAIN deftemplate animal))
+(defmodule ESCRIBIR (import MAIN deftemplate animal))
+
+(defrule LEER::leerFichero
     =>
     (open entradaFichero.dat fichero)
     (bind ?valor (read fichero))
@@ -20,21 +22,27 @@
     (close fichero)
 )
 
-(defrule escribirFichero
-    (declare (salience 2))
+(defrule ESCRIBIR::abrirFichero
+    (declare (salience 3))
     =>
     (open salidaFichero.out ficheroSalida "w")
 )
 
-(defrule cerrarFichero
-    (declare (salience 4))
+(defrule ESCRIBIR::cerrarFichero
+    (declare (salience 1))
     =>
     (close ficheroSalida)
 )
 
-(defrule escribirFinal
-    (declare (salience 3))
+(defrule ESCRIBIR::escribirFinal
+    (declare (salience 2))
     (animal (tipo ?tipo)(edad ?edad))
     =>
     (printout ficheroSalida ?tipo " de " ?edad " años" crlf)
+)
+
+(defrule MAIN::run
+    =>
+    (focus ESCRIBIR)
+    (focus LEER)
 )
