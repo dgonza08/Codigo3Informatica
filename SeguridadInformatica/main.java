@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) throws FileNotFoundException {
-        File archivo = new File("/home/drox/Documentos/Informatica/SeguridadInformatica/datos_1.txt");
+        File archivo = new File("/home/drox/repositorios/Codigo3Informatica/SeguridadInformatica/datos_1.txt");
         Scanner sc = new Scanner(archivo);
 
         String cadena = "";
