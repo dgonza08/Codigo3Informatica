@@ -1,6 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Practica1 {
@@ -66,6 +69,20 @@ public class Practica1 {
             entropia += (probabilidadDeEmision * mapaInformacion.get(clave));
         }
         System.out.println("Entropia de la fuente: " + entropia + "\n");
+
+        // Ordenar fuente de informacion
+        HashMap<Character, Float> mapaOrdenado = new HashMap<Character, Float>();
+
+        List<Float> listaOrdenada = new ArrayList<>(mapa.values());
+        Collections.sort(listaOrdenada);
+
+        for (int i = 0; i < listaOrdenada.size(); i++) {
+
+        }
+
+        for (int i = 0; i < listaOrdenada.size(); i++) {
+            System.out.println(listaOrdenada.get(i));
+        }
 
         sc.close();
     }
