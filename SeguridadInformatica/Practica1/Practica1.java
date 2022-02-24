@@ -5,22 +5,18 @@ import java.util.Scanner;
 
 public class Practica1 {
     public static void main(String[] args) throws FileNotFoundException {
-        File archivo = new File("/home/drox/repositorios/Codigo3Informatica/SeguridadInformatica/Practica1/datos_1Original.txt");
+        File archivo = new File("/home/drox/repositorios/Codigo3Informatica/SeguridadInformatica/Practica1/datos_1.txt");
         Scanner sc = new Scanner(archivo);
 
         String cadena = "";
+        int contadorSaltosLinea = -1;
 
         while (sc.hasNext()) {
             cadena += sc.nextLine();
+            contadorSaltosLinea++;
         }
 
         float total = cadena.length();
-
-        int contadorSaltosLinea = 0;
-        while(sc.hasNextLine()) {
-            contadorSaltosLinea++;
-            sc.nextLine();
-        }
 
         HashMap<Character, Float> mapa = new HashMap<Character, Float>();
         for (int j = 0; j < cadena.length(); j++) {
@@ -29,20 +25,27 @@ public class Practica1 {
             for (int k = 0; k < cadena.length(); k++) {
                 if (caracter == cadena.charAt(k)) {
                     contador++;
-                } else if (caracter == ' '+' ') {
-                    contador += 2;
                 }
                 mapa.put(caracter, contador);
             }
+            if(caracter == ' '){
+                mapa.put(caracter, contador += (contadorSaltosLinea * 2));
+            }
         }
 
-        System.out.println("Mapa es: \n" + mapa + "\n");
+        System.out.println("Mapa de caracteres: " + mapa + "\n");
 
+
+        System.out.println("Total de caracteres: " + total + "\n");
+        System.out.println("Saltos de linea: " + contadorSaltosLinea);
+        
         // Frecuencia absoluta d
         System.out.println("La frecuendia absoluta de d es: " + mapa.get('d'));
 
         // Probabilidad de d
         System.out.println("La probabilidad de d es: " + mapa.get('d') / (total + (contadorSaltosLinea * 2)));
+
+        // Calculo de la entropia de los caracteres
 
         sc.close();
     }
