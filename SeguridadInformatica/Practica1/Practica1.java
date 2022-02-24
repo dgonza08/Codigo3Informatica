@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Practica1 {
     public static void main(String[] args) throws FileNotFoundException {
-        File archivo = new File("/home/drox/repositorios/Codigo3Informatica/SeguridadInformatica/Practica1/datos_1.txt");
+        File archivo = new File("datos_1.txt");
         Scanner sc = new Scanner(archivo);
 
         String cadena = "";
@@ -28,24 +28,44 @@ public class Practica1 {
                 }
                 mapa.put(caracter, contador);
             }
-            if(caracter == ' '){
+            if (caracter == ' ') {
                 mapa.put(caracter, contador += (contadorSaltosLinea * 2));
             }
         }
 
         System.out.println("Mapa de caracteres: " + mapa + "\n");
 
-
         System.out.println("Total de caracteres: " + total + "\n");
         System.out.println("Saltos de linea: " + contadorSaltosLinea);
-        
+
         // Frecuencia absoluta d
         System.out.println("La frecuendia absoluta de d es: " + mapa.get('d'));
 
         // Probabilidad de d
         System.out.println("La probabilidad de d es: " + mapa.get('d') / (total + (contadorSaltosLinea * 2)));
 
-        // Calculo de la entropia de los caracteres
+        HashMap<Character, Float> mapaInformacion = new HashMap<Character, Float>();
+        // Cantidad de informacion de los caracteres
+        for (Character clave : mapa.keySet()) {
+            float valor = mapa.get(clave);
+            mapaInformacion.put(clave, -new Operaciones().log(valor / (total + (contadorSaltosLinea * 2)), 2));
+        }
+
+        System.out.println("Mapa de informacion: " + mapaInformacion + "\n");
+
+        HashMap<Character, Float> mapaProbabilidadEmision = new HashMap<Character, Float>();
+        for (Character clave : mapa.keySet()) {
+            float valor = mapa.get(clave);
+            mapaProbabilidadEmision.put(clave, valor / (total + (contadorSaltosLinea * 2)));
+        }
+
+        // Calculo de la entropia de la fuente
+        float entropia = 0f;
+        for (Character clave : mapaProbabilidadEmision.keySet()) {
+            float probabilidadDeEmision = mapaProbabilidadEmision.get(clave);
+            entropia += (probabilidadDeEmision * mapaInformacion.get(clave));
+        }
+        System.out.println("Entropia de la fuente: " + entropia + "\n");
 
         sc.close();
     }
