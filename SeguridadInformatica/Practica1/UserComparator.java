@@ -12,7 +12,7 @@ class UserComparator implements Comparator<Object> {
         if (map.get(o2) == map.get(o1)) {
             return 1;
         } else {
-            return (map.get(o1)).compareTo(map.get(o2));
+            return (map.get(o2)).compareTo(map.get(o1));
         }
     }
 }

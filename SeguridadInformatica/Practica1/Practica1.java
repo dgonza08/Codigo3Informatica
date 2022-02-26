@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Practica1 {
+    private static int SALIDA = 0;
     public static void main(String[] args) throws FileNotFoundException {
         File archivo = new File("datos_1.txt");
         Scanner sc = new Scanner(archivo);
@@ -66,19 +67,24 @@ public class Practica1 {
         }
         System.out.println("Entropia de la fuente: " + entropia + "\n");
 
-        UserComparator comparator = new UserComparator(mapaInformacion);
+        UserComparator comparator = new UserComparator(mapaProbabilidadEmision);
         Map<Character, Float> mapaOrdenado = new TreeMap<Character, Float>(comparator);
 
-        for (Character clave : mapaInformacion.keySet()) {
-            Float valor = mapaInformacion.get(clave);
+        for (Character clave : mapaProbabilidadEmision.keySet()) {
+            Float valor = mapaProbabilidadEmision.get(clave);
             mapaOrdenado.put(clave, valor);
-            System.out.println("Caracter: " + clave + " - Informacion: " + valor);
+            System.out.println("Caracter: " + clave + " - Probabilidad emision: " + valor);
         }
 
         System.out.println("Tamanyo del mapa ordenado: " + mapaOrdenado.size() + "\n");
 
-        mapaOrdenado.forEach((clave, valor) -> System.out.println(clave + " - Informacion: " + valor
-                + " - Probabilidad de emision: " + mapaProbabilidadEmision.get(clave)));
+        mapaOrdenado.forEach((clave, valor) -> {
+            if(SALIDA < 4) {
+                System.out.println(clave + " - Frecuencia: " + mapa.get(clave)
+                    + " - Probabilidad de emision: " + valor);
+            }
+            SALIDA ++;
+        });
 
         sc.close();
     }
