@@ -1,9 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.time.chrono.ThaiBuddhistChronology;
 import java.util.*;
-
-import javax.swing.JOptionPane;
 
 public class Practica1 {
     public static void main(String[] args) throws FileNotFoundException {
