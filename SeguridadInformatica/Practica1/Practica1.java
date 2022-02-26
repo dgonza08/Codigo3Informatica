@@ -1,10 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.time.chrono.ThaiBuddhistChronology;
+import java.util.*;
+
+import javax.swing.JOptionPane;
 
 public class Practica1 {
     public static void main(String[] args) throws FileNotFoundException {
@@ -70,19 +69,19 @@ public class Practica1 {
         }
         System.out.println("Entropia de la fuente: " + entropia + "\n");
 
-        // Ordenar fuente de informacion
-        HashMap<Character, Float> mapaOrdenado = new HashMap<Character, Float>();
+        UserComparator comparator = new UserComparator(mapaInformacion);
+        Map<Character, Float> mapaOrdenado = new TreeMap<Character, Float>(comparator);
 
-        List<Float> listaOrdenada = new ArrayList<>(mapa.values());
-        Collections.sort(listaOrdenada);
-
-        for (int i = 0; i < listaOrdenada.size(); i++) {
-
+        for (Character clave : mapaInformacion.keySet()) {
+            Float valor = mapaInformacion.get(clave);
+            mapaOrdenado.put(clave, valor);
+            System.out.println("Caracter: " + clave + " - Informacion: " + valor);
         }
 
-        for (int i = 0; i < listaOrdenada.size(); i++) {
-            System.out.println(listaOrdenada.get(i));
-        }
+        System.out.println("Tamanyo del mapa ordenado: " + mapaOrdenado.size() + "\n");
+
+        mapaOrdenado.forEach((clave, valor) -> System.out.println(clave + " - Informacion: " + valor
+                + " - Probabilidad de emision: " + mapaProbabilidadEmision.get(clave)));
 
         sc.close();
     }
