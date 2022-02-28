@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Practica1 {
     private static int SALIDA = 0;
+
     public static void main(String[] args) throws FileNotFoundException {
         File archivo = new File("datos_1.txt");
         Scanner sc = new Scanner(archivo);
@@ -33,16 +34,16 @@ public class Practica1 {
             }
         }
 
-        System.out.println("Mapa de caracteres: " + mapa + "\n");
+        System.out.println("\nMapa de caracteres: " + mapa + "\n");
 
         System.out.println("Total de caracteres: " + total + "\n");
-        System.out.println("Saltos de linea: " + contadorSaltosLinea);
+        System.out.println("Saltos de linea: " + contadorSaltosLinea + "\n");
 
         // Frecuencia absoluta d
-        System.out.println("La frecuendia absoluta de d es: " + mapa.get('d'));
+        System.out.println("La frecuendia absoluta de d es: " + mapa.get('d') + "\n");
 
         // Probabilidad de d
-        System.out.println("La probabilidad de d es: " + mapa.get('d') / (total + (contadorSaltosLinea * 2)));
+        System.out.println("La probabilidad de d es: " + mapa.get('d') / (total + (contadorSaltosLinea * 2)) + "\n");
 
         HashMap<Character, Float> mapaInformacion = new HashMap<Character, Float>();
         // Cantidad de informacion de los caracteres
@@ -76,14 +77,14 @@ public class Practica1 {
             System.out.println("Caracter: " + clave + " - Probabilidad emision: " + valor);
         }
 
-        System.out.println("Tamanyo del mapa ordenado: " + mapaOrdenado.size() + "\n");
+        System.out.println("\nTamanyo del mapa ordenado: " + mapaOrdenado.size() + "\n");
 
         mapaOrdenado.forEach((clave, valor) -> {
-            if(SALIDA < 4) {
+            if (SALIDA < 4) {
                 System.out.println(clave + " - Frecuencia: " + mapa.get(clave)
-                    + " - Probabilidad de emision: " + valor);
+                        + " - Probabilidad de emision: " + valor);
             }
-            SALIDA ++;
+            SALIDA++;
         });
 
         sc.close();
