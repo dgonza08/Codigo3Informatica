@@ -70,6 +70,7 @@ public class Practica2 {
             contadorSaltosLinea++;
         }
 
+        // ? Muestra la cadena de texto por la salida estandar(System.out)
         for (int i = 0; i < cadena.length(); i++) {
             System.out.print(cadena.charAt(i));
         }
