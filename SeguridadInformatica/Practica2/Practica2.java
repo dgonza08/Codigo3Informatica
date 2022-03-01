@@ -74,6 +74,7 @@ public class Practica2 {
             System.out.print(cadena.charAt(i));
         }
 
+        // * Esto es lo mismo que se hace en la practica 1, reutilizar codigo
         HashMap<Character, Float> mapa = new HashMap<Character, Float>();
         for (int j = 0; j < cadena.length(); j++) {
             Character caracter = cadena.charAt(j);
