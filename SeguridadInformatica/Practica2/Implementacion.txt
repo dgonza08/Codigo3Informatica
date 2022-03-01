@@ -1,0 +1,6 @@
+CLASES:
+	-Practica2.java(main)
+	-Operaciones.java(encargado de la funcionalidad a parte del programa)
+	-Rama.java(crea las ramas por las que iria el algoritmo de huffman en principio)
+	-Huffman.java(hace toda la logica del algoritmo de huffman)
+	-Nodos.java(cada uno de los elementos del arbol por el que se movera el algoritmo)
