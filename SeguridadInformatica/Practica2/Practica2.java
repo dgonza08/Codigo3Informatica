@@ -7,6 +7,12 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+/**
+ * @author David Gonzalez Alvarez
+ *
+ * Intentar separar la implementacion de la vista y la vista de la logica
+ * 
+ */
 public class Practica2 {
     public static void main(String[] args) throws FileNotFoundException {
         File archivo = new File("datos_2.txt");
@@ -25,16 +31,14 @@ public class Practica2 {
         listaProbabilidades.add(0.05f);
         listaProbabilidades.add(0.05f);
 
-        List<Integer> listaFrecuenciasEnteros = new ArrayList<Integer>();
-        for (Float f : listaProbabilidades) {
-            listaFrecuenciasEnteros.add((int) (f * 100));
-        }
+        Operaciones operaciones = new Operaciones();
 
-        JOptionPane.showMessageDialog(null, listaFrecuenciasEnteros, "Lista probabilidades enteros",
+        JOptionPane.showMessageDialog(null, operaciones.rellenarListaFrecuenciasEnteros(listaProbabilidades),
+                "Lista probabilidades enteros",
                 JOptionPane.INFORMATION_MESSAGE);
 
-        // ? A partir de aqui ya habra que empezar a hacer Huffmann
-        
+        // ? A partir de aqui ya habra que empezar a hacer Huffman
+        // * A traves de una variable saber si es binario o ternario
 
         // ! PARA EL EJERCICIO 2
         List<Integer> listaFrecuencias = new ArrayList<Integer>();
