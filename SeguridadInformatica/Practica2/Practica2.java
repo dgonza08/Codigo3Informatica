@@ -10,7 +10,8 @@ import javax.swing.JOptionPane;
 /**
  * @author David Gonzalez Alvarez
  *
- * Intentar separar la implementacion de la vista y la vista de la logica
+ *         Intentar separar la implementacion de la vista y la vista de la
+ *         logica
  * 
  */
 public class Practica2 {
@@ -32,16 +33,21 @@ public class Practica2 {
         listaProbabilidades.add(0.05f);
 
         Operaciones operaciones = new Operaciones();
+        List<Integer> listaFrecuencias = operaciones.rellenarListaFrecuenciasEnteros(listaProbabilidades);
 
-        JOptionPane.showMessageDialog(null, operaciones.rellenarListaFrecuenciasEnteros(listaProbabilidades),
+        JOptionPane.showMessageDialog(null, listaFrecuencias,
                 "Lista probabilidades enteros",
                 JOptionPane.INFORMATION_MESSAGE);
 
         // ? A partir de aqui ya habra que empezar a hacer Huffman
         // * A traves de una variable saber si es binario o ternario
 
+        List<Nodos> listaNodos = operaciones.rellenarListaNodos(listaFrecuencias, listaProbabilidades);
+
+        Huffman huffman = new Huffman(listaNodos, 2);
+
         // ! PARA EL EJERCICIO 2
-        List<Integer> listaFrecuencias = new ArrayList<Integer>();
+        List<Integer> listaFrecuencias2 = new ArrayList<Integer>();
         listaFrecuencias.add(27);
         listaFrecuencias.add(16);
         listaFrecuencias.add(4);

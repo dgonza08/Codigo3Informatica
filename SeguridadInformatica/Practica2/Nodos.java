@@ -12,6 +12,11 @@ public class Nodos {
         this.codigo = codigo;
     }
 
+    public Nodos(int frecuencia, float probabilidad){
+        this.frecuencia = frecuencia;
+        this.probabilidad = probabilidad;
+    }
+
     public Nodos(){
 
     }
