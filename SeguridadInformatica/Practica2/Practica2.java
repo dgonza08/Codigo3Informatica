@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-public class Practica2{
-    public static void main(String[] args) throws FileNotFoundException{
+import javax.swing.JOptionPane;
+
+public class Practica2 {
+    public static void main(String[] args) throws FileNotFoundException {
         File archivo = new File("datos_2.txt");
         Scanner sc = new Scanner(archivo);
 
@@ -22,6 +24,17 @@ public class Practica2{
         listaProbabilidades.add(0.05f);
         listaProbabilidades.add(0.05f);
         listaProbabilidades.add(0.05f);
+
+        List<Integer> listaFrecuenciasEnteros = new ArrayList<Integer>();
+        for (Float f : listaProbabilidades) {
+            listaFrecuenciasEnteros.add((int) (f * 100));
+        }
+
+        JOptionPane.showMessageDialog(null, listaFrecuenciasEnteros, "Lista probabilidades enteros",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        // ? A partir de aqui ya habra que empezar a hacer Huffmann
+        
 
         // ! PARA EL EJERCICIO 2
         List<Integer> listaFrecuencias = new ArrayList<Integer>();
@@ -42,7 +55,7 @@ public class Practica2{
         int contadorSaltosLinea = -1;
         String cadena = "";
 
-        while(sc.hasNext()){
+        while (sc.hasNext()) {
             cadena += sc.nextLine();
             contadorSaltosLinea++;
         }
@@ -66,6 +79,5 @@ public class Practica2{
             }
         }
 
-        //System.out.println(mapa);
     }
 }
