@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -67,6 +68,10 @@ public class Huffman {
      * @return void
      */
     public void recorrerHuffman() {
+        Operaciones op = new Operaciones();
+        List<Integer> lista = new LinkedList<Integer>();
+        lista = op.rellenarListaFrecuenciasEnterosNodos(listaNodos);
 
+        
     }
 }
