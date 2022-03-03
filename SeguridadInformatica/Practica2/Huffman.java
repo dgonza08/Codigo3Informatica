@@ -71,12 +71,12 @@ public class Huffman {
         LinkedList<Integer> lista = new LinkedList<Integer>();
         lista = op.rellenarListaFrecuenciasEnterosNodos(listaNodos);
         int posicion = -1;
-        int maximo1 = lista.get(0);
+        int minimo1 = lista.get(0);
 
         while (lista.size() != 1) {
             for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i) > maximo1) {
-                    maximo1 = lista.get(i);
+                if (lista.get(i) < minimo1) {
+                    minimo1 = lista.get(i);
                     posicion = i;
                 }
             }
@@ -85,10 +85,10 @@ public class Huffman {
             this.listaNodos.get(posicion).setCodigo(codigo1);
             lista.remove(posicion);
 
-            int maximo2 = lista.get(0);
+            int minimo2 = lista.get(0);
             for (int j = 0; j < lista.size(); j++) {
-                if (lista.get(j) > maximo2) {
-                    maximo2 = lista.get(j);
+                if (lista.get(j) < minimo2) {
+                    minimo2 = lista.get(j);
                     posicion = j;
                 }
             }
@@ -97,7 +97,7 @@ public class Huffman {
             this.listaNodos.get(posicion).setCodigo(codigo2);
             lista.remove(posicion);
 
-            lista.add(maximo1 + maximo2);
+            lista.add(minimo1 + minimo2);
         }
 
         for (int k = 0; k < listaNodos.size(); k++) {
