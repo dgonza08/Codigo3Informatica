@@ -66,6 +66,8 @@ public class Huffman {
      * Se encarga de la realizacion del algoritmo de Huffman recorriendo
      * el arbol entero.
      * 
+     * PROBLEMAS EN EL DISEÑO DEL ALGORITMO CON LA POSICION DE LAS LISTAS
+     * 
      * @return void
      */
     public void recorrerHuffman() {
