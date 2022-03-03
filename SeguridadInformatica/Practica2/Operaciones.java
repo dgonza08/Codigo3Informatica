@@ -59,7 +59,7 @@ public class Operaciones {
         // Como lo hemos rellenado de la misma manera no hace falta hacer un doble bucle
         // esta ordenado igual, y tiene el mismo tamanyo
         for (int i = 0; i < listaFrecuencias.size(); i++) {
-            Nodos nodo = new Nodos(listaFrecuencias.get(i), listaProbabilidades.get(i));
+            Nodos nodo = new Nodos(listaFrecuencias.get(i), false, listaProbabilidades.get(i));
             listaNodos.add(nodo);
         }
         return listaNodos;

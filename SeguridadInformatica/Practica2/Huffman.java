@@ -1,4 +1,3 @@
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -111,7 +110,7 @@ public class Huffman {
             }
 
             for (int i = 0; i < listaNodos.size(); i++) {
-                
+
             }
 
             if (contador == 0) {
