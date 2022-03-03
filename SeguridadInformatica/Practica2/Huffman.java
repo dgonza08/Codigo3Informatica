@@ -72,6 +72,7 @@ public class Huffman {
         lista = op.rellenarListaFrecuenciasEnterosNodos(listaNodos);
         int posicion = -1;
         int minimo1 = lista.get(0);
+        int contador = 0;
 
         while (lista.size() != 1) {
             for (int i = 0; i < lista.size(); i++) {
@@ -80,9 +81,21 @@ public class Huffman {
                     posicion = i;
                 }
             }
+
+            if (contador == 0) {
+                LinkedList<Integer> primerCodigo1 = new LinkedList<Integer>();
+                this.listaNodos.get(posicion).setCodigo(primerCodigo1);
+            }
+
             LinkedList<Integer> codigo1 = this.listaNodos.get(posicion).getCodigo();
-            codigo1.add(1);
-            this.listaNodos.get(posicion).setCodigo(codigo1);
+            if (codigo1.size() == 0) {
+                LinkedList<Integer> codigo1SiVacio = new LinkedList<Integer>();
+                codigo1SiVacio.add(1);
+                this.listaNodos.get(posicion).setCodigo(codigo1SiVacio);
+            } else {
+                codigo1.add(1);
+                this.listaNodos.get(posicion).setCodigo(codigo1);
+            }
             lista.remove(posicion);
 
             int minimo2 = lista.get(0);
@@ -92,12 +105,25 @@ public class Huffman {
                     posicion = j;
                 }
             }
+
+            if (contador == 0) {
+                LinkedList<Integer> primerCodigo2 = new LinkedList<Integer>();
+                this.listaNodos.get(posicion).setCodigo(primerCodigo2);
+            }
+            
             LinkedList<Integer> codigo2 = this.listaNodos.get(posicion).getCodigo();
-            codigo2.add(0);
-            this.listaNodos.get(posicion).setCodigo(codigo2);
+            if (codigo2.size() == 0) {
+                LinkedList<Integer> codigo2SiVacio = new LinkedList<Integer>();
+                codigo2SiVacio.add(0);
+                this.listaNodos.get(posicion).setCodigo(codigo2SiVacio);
+            } else {
+                codigo2.add(0);
+                this.listaNodos.get(posicion).setCodigo(codigo2);
+            }
             lista.remove(posicion);
 
             lista.add(minimo1 + minimo2);
+            contador++;
         }
 
         for (int k = 0; k < listaNodos.size(); k++) {

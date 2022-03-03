@@ -71,9 +71,9 @@ public class Practica2 {
         }
 
         // ? Muestra la cadena de texto por la salida estandar(System.out)
-        for (int i = 0; i < cadena.length(); i++) {
+        /*for (int i = 0; i < cadena.length(); i++) {
             System.out.print(cadena.charAt(i));
-        }
+        }*/
 
         // * Esto es lo mismo que se hace en la practica 1, reutilizar codigo
         HashMap<Character, Float> mapa = new HashMap<Character, Float>();
