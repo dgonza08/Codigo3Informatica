@@ -77,5 +77,6 @@ public class Operaciones {
         for (int i = nodo.getCodigo().size(); i >= 0; i--) {
             switched.add(nodo.getCodigo().get(i));
         }
+        nodo.setCodigo(switched);
     }
 }

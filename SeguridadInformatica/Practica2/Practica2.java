@@ -1,14 +1,10 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
-
-import org.w3c.dom.html.HTMLOptGroupElement;
 
 /**
  * @author David Gonzalez Alvarez
@@ -51,7 +47,7 @@ public class Practica2 {
         huffman.recorrerHuffman();
 
         // ! PARA EL EJERCICIO 2
-        List<Integer> listaFrecuencias2 = new ArrayList<Integer>();
+        // LinkedList<Integer> listaFrecuencias2 = new LinkedList<Integer>();
         listaFrecuencias.add(27);
         listaFrecuencias.add(16);
         listaFrecuencias.add(4);
@@ -95,5 +91,6 @@ public class Practica2 {
             }
         }
 
+        sc.close();
     }
 }
