@@ -1,3 +1,5 @@
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -70,9 +72,11 @@ public class Huffman {
         Operaciones op = new Operaciones();
         LinkedList<Integer> lista = new LinkedList<Integer>();
         lista = op.rellenarListaFrecuenciasEnterosNodos(listaNodos);
-        int posicion = -1;
+        int posicion = 0;
         int minimo1 = lista.get(0);
         int contador = 0;
+
+        Collections.sort(lista);
 
         while (lista.size() != 1) {
             for (int i = 0; i < lista.size(); i++) {
@@ -82,10 +86,8 @@ public class Huffman {
                 }
             }
 
-            if (contador == 0) {
-                LinkedList<Integer> primerCodigo1 = new LinkedList<Integer>();
-                this.listaNodos.get(posicion).setCodigo(primerCodigo1);
-            }
+            LinkedList<Integer> primerCodigo1 = new LinkedList<Integer>();
+            this.listaNodos.get(posicion).setCodigo(primerCodigo1);
 
             LinkedList<Integer> codigo1 = this.listaNodos.get(posicion).getCodigo();
             if (codigo1.size() == 0) {
@@ -106,18 +108,22 @@ public class Huffman {
                 }
             }
 
+            for (int i = 0; i < listaNodos.size(); i++) {
+                
+            }
+
             if (contador == 0) {
                 LinkedList<Integer> primerCodigo2 = new LinkedList<Integer>();
                 this.listaNodos.get(posicion).setCodigo(primerCodigo2);
             }
-            
+
             LinkedList<Integer> codigo2 = this.listaNodos.get(posicion).getCodigo();
             if (codigo2.size() == 0) {
                 LinkedList<Integer> codigo2SiVacio = new LinkedList<Integer>();
-                codigo2SiVacio.add(0);
+                codigo2SiVacio.add(1);
                 this.listaNodos.get(posicion).setCodigo(codigo2SiVacio);
             } else {
-                codigo2.add(0);
+                codigo2.add(1);
                 this.listaNodos.get(posicion).setCodigo(codigo2);
             }
             lista.remove(posicion);
