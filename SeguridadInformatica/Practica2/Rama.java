@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.LinkedList;
 
 /**
  * Clase encargada de realizar todas las operaciones referentes a los caminos
@@ -13,7 +13,7 @@ import java.util.List;
  * 
  */
 public class Rama {
-    private List<Nodos> listaNodos;
+    private LinkedList<Nodos> listaNodos;
     private Huffman huffman;
 
     /**
@@ -31,7 +31,7 @@ public class Rama {
      * 
      * @return listaNodos del camino seguido
      */
-    public List<Nodos> getListaNodos() {
+    public LinkedList<Nodos> getListaNodos() {
         return listaNodos;
     }
 
@@ -40,7 +40,7 @@ public class Rama {
      * 
      * @param listaNodos
      */
-    public void setListaNodos(List<Nodos> listaNodos) {
+    public void setListaNodos(LinkedList<Nodos> listaNodos) {
         this.listaNodos = listaNodos;
     }
 

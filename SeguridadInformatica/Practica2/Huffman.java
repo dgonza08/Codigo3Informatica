@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Clase encargade de realizar todas las operaciones necesarias para la
@@ -12,7 +11,7 @@ import java.util.List;
  */
 public class Huffman {
     private int tipoRecorrido; // Si es binario 2, si es ternario 3 (0 equivaldria a nada)
-    private List<Nodos> listaNodos;
+    private LinkedList<Nodos> listaNodos;
 
     /**
      * Constructor de la clase Huffman
@@ -20,7 +19,7 @@ public class Huffman {
      * @param tipoRecorrido
      * @param listaNodos
      */
-    public Huffman(List<Nodos> listaNodos, int tipoRecorrido) {
+    public Huffman(LinkedList<Nodos> listaNodos, int tipoRecorrido) {
         this.tipoRecorrido = tipoRecorrido;
         this.listaNodos = listaNodos;
     }
@@ -30,7 +29,7 @@ public class Huffman {
      * 
      * @return listaNodos
      */
-    public List<Nodos> getListaNodos() {
+    public LinkedList<Nodos> getListaNodos() {
         return listaNodos;
     }
 
@@ -39,7 +38,7 @@ public class Huffman {
      * 
      * @param listaNodos
      */
-    public void setListaNodos(List<Nodos> listaNodos) {
+    public void setListaNodos(LinkedList<Nodos> listaNodos) {
         this.listaNodos = listaNodos;
     }
 
@@ -69,9 +68,40 @@ public class Huffman {
      */
     public void recorrerHuffman() {
         Operaciones op = new Operaciones();
-        List<Integer> lista = new LinkedList<Integer>();
+        LinkedList<Integer> lista = new LinkedList<Integer>();
         lista = op.rellenarListaFrecuenciasEnterosNodos(listaNodos);
+        int posicion = -1;
+        int maximo1 = lista.get(0);
 
-        
+        while (lista.size() != 1) {
+            for (int i = 0; i < lista.size(); i++) {
+                if (lista.get(i) > maximo1) {
+                    maximo1 = lista.get(i);
+                    posicion = i;
+                }
+            }
+            LinkedList<Integer> codigo1 = this.listaNodos.get(posicion).getCodigo();
+            codigo1.add(1);
+            this.listaNodos.get(posicion).setCodigo(codigo1);
+            lista.remove(posicion);
+
+            int maximo2 = lista.get(0);
+            for (int j = 0; j < lista.size(); j++) {
+                if (lista.get(j) > maximo2) {
+                    maximo2 = lista.get(j);
+                    posicion = j;
+                }
+            }
+            LinkedList<Integer> codigo2 = this.listaNodos.get(posicion).getCodigo();
+            codigo2.add(0);
+            this.listaNodos.get(posicion).setCodigo(codigo2);
+            lista.remove(posicion);
+
+            lista.add(maximo1 + maximo2);
+        }
+
+        for (int k = 0; k < listaNodos.size(); k++) {
+            op.switchCode(listaNodos.get(k));
+        }
     }
 }

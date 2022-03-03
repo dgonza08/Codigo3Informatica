@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * Esta clase hace referencia a los nodos del algoritmo de Huffmann
  * 
@@ -8,7 +10,7 @@
 public class Nodos {
     private int frecuencia;
     private float probabilidad;
-    private int codigo;
+    private LinkedList<Integer> codigo;
 
     /**
      * Constructor de la clase Nodos con 3 parametros
@@ -17,7 +19,7 @@ public class Nodos {
      * @param probabilidad
      * @param codigo
      */
-    public Nodos(int frecuencia, float probabilidad, int codigo) {
+    public Nodos(int frecuencia, float probabilidad, LinkedList<Integer> codigo) {
         this.frecuencia = frecuencia;
         this.probabilidad = probabilidad;
         this.codigo = codigo;
@@ -82,7 +84,7 @@ public class Nodos {
      * 
      * @return codigo
      */
-    public int getCodigo() {
+    public LinkedList<Integer> getCodigo() {
         return codigo;
     }
 
@@ -91,7 +93,7 @@ public class Nodos {
      * 
      * @param codigo
      */
-    public void setCodigo(int codigo) {
+    public void setCodigo(LinkedList<Integer> codigo) {
         this.codigo = codigo;
     }
 }

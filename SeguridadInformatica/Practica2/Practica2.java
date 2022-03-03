@@ -2,10 +2,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
+
+import org.w3c.dom.html.HTMLOptGroupElement;
 
 /**
  * @author David Gonzalez Alvarez
@@ -20,7 +23,7 @@ public class Practica2 {
         Scanner sc = new Scanner(archivo);
 
         // ! PARA EL EJERCICIO 1
-        List<Float> listaProbabilidades = new ArrayList<Float>();
+        LinkedList<Float> listaProbabilidades = new LinkedList<Float>();
         listaProbabilidades.add(0.3f);
         listaProbabilidades.add(0.2f);
         listaProbabilidades.add(0.1f);
@@ -33,7 +36,7 @@ public class Practica2 {
         listaProbabilidades.add(0.05f);
 
         Operaciones operaciones = new Operaciones();
-        List<Integer> listaFrecuencias = operaciones.rellenarListaFrecuenciasEnteros(listaProbabilidades);
+        LinkedList<Integer> listaFrecuencias = operaciones.rellenarListaFrecuenciasEnteros(listaProbabilidades);
 
         JOptionPane.showMessageDialog(null, listaFrecuencias,
                 "Lista probabilidades enteros",
@@ -42,9 +45,10 @@ public class Practica2 {
         // ? A partir de aqui ya habra que empezar a hacer Huffman
         // * A traves de una variable saber si es binario o ternario
 
-        List<Nodos> listaNodos = operaciones.rellenarListaNodos(listaFrecuencias, listaProbabilidades);
+        LinkedList<Nodos> listaNodos = operaciones.rellenarListaNodos(listaFrecuencias, listaProbabilidades);
 
         Huffman huffman = new Huffman(listaNodos, 2);
+        huffman.recorrerHuffman();
 
         // ! PARA EL EJERCICIO 2
         List<Integer> listaFrecuencias2 = new ArrayList<Integer>();

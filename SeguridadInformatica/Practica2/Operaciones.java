@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Clase encargada de realizar las operaciones que no tengan que ver
@@ -22,8 +21,8 @@ public class Operaciones {
      * @param lista
      * @return lista de frecuencias enteras
      */
-    public List<Integer> rellenarListaFrecuenciasEnteros(List<Float> lista) {
-        List<Integer> listaFrecuenciasEnteros = new LinkedList<Integer>();
+    public LinkedList<Integer> rellenarListaFrecuenciasEnteros(LinkedList<Float> lista) {
+        LinkedList<Integer> listaFrecuenciasEnteros = new LinkedList<Integer>();
         for (Float f : lista) {
             listaFrecuenciasEnteros.add((int) (f * 100));
         }
@@ -37,8 +36,8 @@ public class Operaciones {
      * @param lista Nodos
      * @return lista de frecuencias enteras
      */
-    public List<Integer> rellenarListaFrecuenciasEnterosNodos(List<Nodos> lista) {
-        List<Integer> listaFrecuenciasEnteros = new LinkedList<Integer>();
+    public LinkedList<Integer> rellenarListaFrecuenciasEnterosNodos(LinkedList<Nodos> lista) {
+        LinkedList<Integer> listaFrecuenciasEnteros = new LinkedList<Integer>();
         for (Nodos n : lista) {
             listaFrecuenciasEnteros.add((n.getFrecuencia()));
         }
@@ -53,8 +52,9 @@ public class Operaciones {
      * @param listaProbabilidades
      * @return lista de cada uno de los nodos del arbol
      */
-    public List<Nodos> rellenarListaNodos(List<Integer> listaFrecuencias, List<Float> listaProbabilidades) {
-        List<Nodos> listaNodos = new LinkedList<Nodos>();
+    public LinkedList<Nodos> rellenarListaNodos(LinkedList<Integer> listaFrecuencias,
+            LinkedList<Float> listaProbabilidades) {
+        LinkedList<Nodos> listaNodos = new LinkedList<Nodos>();
 
         // Como lo hemos rellenado de la misma manera no hace falta hacer un doble bucle
         // esta ordenado igual, y tiene el mismo tamanyo
@@ -63,5 +63,19 @@ public class Operaciones {
             listaNodos.add(nodo);
         }
         return listaNodos;
+    }
+
+    /**
+     * Da la vuelta a las palabras codigo de un nodo, ya que en el algoritmo de
+     * huffman
+     * lo meteria todo como nos lo dan, que es del reves
+     * 
+     * @param nodo
+     */
+    public void switchCode(Nodos nodo) {
+        LinkedList<Integer> switched = new LinkedList<Integer>();
+        for (int i = nodo.getCodigo().size(); i >= 0; i--) {
+            switched.add(nodo.getCodigo().get(i));
+        }
     }
 }
