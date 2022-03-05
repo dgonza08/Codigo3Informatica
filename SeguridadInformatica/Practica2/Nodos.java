@@ -8,6 +8,8 @@ import java.util.LinkedList;
  * 
  */
 public class Nodos {
+    private Nodos izquierda;
+    private Nodos derecha;
     private int frecuencia;
     private float probabilidad;
     private boolean cogido;
@@ -27,7 +29,7 @@ public class Nodos {
         this.cogido = cogido;
         this.codigo = codigo;
     }
-
+    
     /**
      * Constructor de la clase Nodos con 2 parametros
      * 
@@ -48,6 +50,24 @@ public class Nodos {
 
     }
 
+    /**
+     * Metodo que devuelve el nodo de la izquierda al actual
+     * 
+     * @return izquierda
+     */
+    public Nodos getIzquierda(){
+        return this.izquierda;
+    }
+
+    /**
+     * Metodo que devuelve el nodo de la derecha del actual
+     * 
+     * @return derecha
+     */
+    public Nodos getDerecha(){
+        return this.derecha;
+    }
+    
     /**
      * Metodo que nos devuelve la frecuencia del nodo
      * 
