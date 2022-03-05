@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -69,77 +68,47 @@ public class Huffman {
      * 
      * @return void
      */
-    public void recorrerHuffman() {
-        Operaciones op = new Operaciones();
-        LinkedList<Integer> lista = new LinkedList<Integer>();
-        lista = op.rellenarListaFrecuenciasEnterosNodos(listaNodos);
-        int posicion = 0;
-        int minimo1 = lista.get(0);
-        int contador = 0;
-
-        Collections.sort(lista);
-
-        while (lista.size() != 1) {
-            for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i) < minimo1) {
-                    minimo1 = lista.get(i);
-                    posicion = i;
-                }
-            }
-
-            LinkedList<Integer> primerCodigo1 = new LinkedList<Integer>();
-            this.listaNodos.get(posicion).setCodigo(primerCodigo1);
-
-            LinkedList<Integer> codigo1 = this.listaNodos.get(posicion).getCodigo();
-            if (codigo1.size() == 0) {
-                LinkedList<Integer> codigo1SiVacio = new LinkedList<Integer>();
-                codigo1SiVacio.add(1);
-                this.listaNodos.get(posicion).setCodigo(codigo1SiVacio);
-            } else {
-                codigo1.add(1);
-                this.listaNodos.get(posicion).setCodigo(codigo1);
-            }
-            lista.remove(posicion);
-
-            int minimo2 = lista.get(0);
-            for (int j = 0; j < lista.size(); j++) {
-                if (lista.get(j) < minimo2) {
-                    minimo2 = lista.get(j);
-                    posicion = j;
-                }
-            }
-
-            for (int i = 0; i < listaNodos.size(); i++) {
-
-            }
-
-            if (contador == 0) {
-                LinkedList<Integer> primerCodigo2 = new LinkedList<Integer>();
-                this.listaNodos.get(posicion).setCodigo(primerCodigo2);
-            }
-
-            LinkedList<Integer> codigo2 = this.listaNodos.get(posicion).getCodigo();
-            if (codigo2.size() == 0) {
-                LinkedList<Integer> codigo2SiVacio = new LinkedList<Integer>();
-                codigo2SiVacio.add(1);
-                this.listaNodos.get(posicion).setCodigo(codigo2SiVacio);
-            } else {
-                codigo2.add(1);
-                this.listaNodos.get(posicion).setCodigo(codigo2);
-            }
-            lista.remove(posicion);
-
-            lista.add(minimo1 + minimo2);
-            contador++;
+    public void recorrerHuffman(Nodos raiz) {
+        if (raiz == null) {
+            return;
         }
+        LinkedList<Integer> listaNuevaCodigos = raiz.getCodigo();
+        listaNuevaCodigos.add(1);
+        raiz.getIzquierda().setCodigo(listaNuevaCodigos);
+        recorrerHuffman(raiz.getIzquierda());
 
-        for (int k = 0; k < listaNodos.size(); k++) {
-            op.switchCode(listaNodos.get(k));
-        }
+        listaNuevaCodigos = raiz.getCodigo();
+        listaNuevaCodigos.add(0);
+        raiz.getDerecha().setCodigo(listaNuevaCodigos);
+        recorrerHuffman(raiz.getDerecha());
     }
 
-    public void crearArbol(){
+    public Nodos crearArbol(){
         Operaciones op = new Operaciones();
-        
+        LinkedList<Nodos> listaNodosComprobar = new LinkedList<Nodos>();
+        Nodos ultimoNodo = new Nodos();
+        LinkedList<Nodos> listaNodosFinal = new LinkedList<Nodos>();
+        listaNodosFinal = this.listaNodos; // Aqui se guardarian todos los nodos del arbol
+
+        while (listaNodosComprobar.size() > 1){
+            if(listaNodosComprobar.size() == 0){
+                listaNodosComprobar = this.listaNodos;
+            }
+
+            Nodos minimo1 = op.encontrarMinimo(listaNodosComprobar);
+            listaNodosComprobar.remove(minimo1);
+            Nodos minimo2 = op.encontrarMinimo(listaNodosComprobar);
+            listaNodosComprobar.remove(minimo2);
+
+            Nodos nuevoNodo = new Nodos(minimo1.getFrecuencia() + minimo2.getFrecuencia());
+            listaNodosFinal.add(nuevoNodo);
+            listaNodosComprobar.add(nuevoNodo);
+
+            nuevoNodo.setIzquierda(minimo1);
+            nuevoNodo.setDerecha(minimo2);
+
+            ultimoNodo = nuevoNodo;
+        }
+        return ultimoNodo;
     }
 }

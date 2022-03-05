@@ -79,4 +79,25 @@ public class Operaciones {
         }
         nodo.setCodigo(switched);
     }
+
+    /**
+     * Se encarga de encontrar el valor de la frecuencia minima dentro de
+     * la lista que le pasamos como parametro
+     * 
+     * @param lista
+     * @return minimo
+     */
+    public Nodos encontrarMinimo(LinkedList<Nodos> lista){
+        Nodos minimo = new Nodos(); 
+        for (int i = 0; i < lista.size(); i++) {
+            if (i == 0) {
+                minimo = lista.get(i);
+            }else{
+                if (lista.get(i).getFrecuencia() < minimo.getFrecuencia()) {
+                    minimo = lista.get(i);
+                }
+            }
+        }
+        return minimo;
+    }
 }
