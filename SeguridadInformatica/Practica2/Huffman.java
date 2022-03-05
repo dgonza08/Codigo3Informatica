@@ -137,4 +137,9 @@ public class Huffman {
             op.switchCode(listaNodos.get(k));
         }
     }
+
+    public void crearArbol(){
+        Operaciones op = new Operaciones();
+        
+    }
 }
