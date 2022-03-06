@@ -14,14 +14,14 @@ public class Huffman {
     // equivaldria a nada)
     private LinkedList<Nodos> listaNodos;
     private Nodos raizReal;
+
     /**
      * Constructor de la clase Huffman
      * 
      * @param listaNodos
      */
     public Huffman(LinkedList<Nodos> listaNodos) {
-        this.listaNodos = 
-        listaNodos;
+        this.listaNodos = listaNodos;
     }
 
     /**
@@ -64,7 +64,8 @@ public class Huffman {
      * Se encarga de la realizacion del algoritmo de Huffman recorriendo
      * el arbol entero.
      * 
-     * PROBLEMAS EN EL DISEÑO DEL ALGORITMO CON LA POSICION DE LAS LISTAS
+     * ! PROBLEMAS EN LA ASIGNACION DEL CODIGO DE CADA UNO DE LOS NODOS PRINICIPALES
+     * ? QUIZAS EL PROBLEMA ES POR HACERLO RECURSIVAMENTE
      * 
      * @return void
      */
@@ -76,22 +77,28 @@ public class Huffman {
         if (raiz.getCodigo() == null) {
             raiz.setCodigo(new LinkedList<>());
         }
-
+        
         if (raiz.getIzquierda() != null) {
-            LinkedList<Integer> listaNuevaCodigos = raiz.getCodigo();
-            listaNuevaCodigos.add(1);
-            raiz.getIzquierda().setCodigo(listaNuevaCodigos);
+            LinkedList<Integer> listaNuevaCodigosIzquierda = raiz.getCodigo();
+            listaNuevaCodigosIzquierda.add(1);
+            raiz.getIzquierda().setCodigo(listaNuevaCodigosIzquierda);
             recorrerHuffman(raiz.getIzquierda());
         }
-
+        
         if (raiz.getDerecha() != null) {
-            LinkedList<Integer> listaNuevaCodigos = raiz.getCodigo();
-            listaNuevaCodigos.add(0);
-            raiz.getDerecha().setCodigo(listaNuevaCodigos);
+            LinkedList<Integer> listaNuevaCodigosDerecha = raiz.getCodigo();
+            listaNuevaCodigosDerecha.add(0);
+            raiz.getDerecha().setCodigo(listaNuevaCodigosDerecha);
             recorrerHuffman(raiz.getDerecha());
         }
     }
 
+    /**
+     * Metodo que crea el arbol que vamos a recorrer posteriormente
+     * ulitizo el algoritmo de huffman para crearlo
+     * 
+     * @return Nodo final del arbol
+     */
     public Nodos crearArbol() {
         Operaciones op = new Operaciones();
         LinkedList<Nodos> listaNodosComprobar = new LinkedList<Nodos>();
