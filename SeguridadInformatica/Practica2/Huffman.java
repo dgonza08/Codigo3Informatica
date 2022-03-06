@@ -65,7 +65,7 @@ public class Huffman {
      * el arbol entero.
      * 
      * ! PROBLEMAS EN LA ASIGNACION DEL CODIGO DE CADA UNO DE LOS NODOS PRINICIPALES
-     * ? QUIZAS EL PROBLEMA ES POR HACERLO RECURSIVAMENTE
+     * * ERA UN PROBLEMA DE ASIGNACION
      * 
      * @return void
      */
