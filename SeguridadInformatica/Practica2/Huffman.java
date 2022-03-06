@@ -13,14 +13,33 @@ public class Huffman {
     // private int tipoRecorrido; // Si es binario 2, si es ternario 3 (0
     // equivaldria a nada)
     private LinkedList<Nodos> listaNodos;
-
+    private Nodos raizReal;
     /**
      * Constructor de la clase Huffman
      * 
      * @param listaNodos
      */
     public Huffman(LinkedList<Nodos> listaNodos) {
-        this.listaNodos = listaNodos;
+        this.listaNodos = 
+        listaNodos;
+    }
+
+    /**
+     * Metodo que devuelve la raiz real del arbol
+     * 
+     * @return raizReal
+     */
+    public Nodos getRaizReal() {
+        return this.raizReal;
+    }
+
+    /**
+     * Metodo que devuelve la raiz real del arbol
+     * 
+     * @param raizReal
+     */
+    public void setRaizReal(Nodos raizReal) {
+        this.raizReal = raizReal;
     }
 
     /**
@@ -83,11 +102,6 @@ public class Huffman {
                                                                           // arbol
 
         while (listaNodosComprobar.size() > 1) {
-            /*
-             * if (listaNodosComprobar.size() == 0) {
-             * listaNodosComprobar = this.listaNodos;
-             * }
-             */
 
             Nodos minimo1 = op.encontrarMinimo(listaNodosComprobar);
             listaNodosComprobar.remove(minimo1);
@@ -99,12 +113,17 @@ public class Huffman {
             listaNodosFinal.add(nuevoNodo);
             listaNodosComprobar.add(nuevoNodo);
 
+            if (minimo1.getFrecuencia() < minimo2.getFrecuencia()) {
+                Nodos auxiliar = new Nodos();
+                auxiliar = minimo1;
+                minimo1 = minimo2;
+                minimo2 = auxiliar;
+            }
+
             nuevoNodo.setIzquierda(minimo1);
             nuevoNodo.setDerecha(minimo2);
-
             ultimoNodo = nuevoNodo;
         }
-        System.out.println(ultimoNodo.getFrecuencia());
         return ultimoNodo;
     }
 }
