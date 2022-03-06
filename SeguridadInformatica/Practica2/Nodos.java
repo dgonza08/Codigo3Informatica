@@ -29,7 +29,7 @@ public class Nodos {
         this.cogido = cogido;
         this.codigo = codigo;
     }
-    
+
     /**
      * Constructor de la clase Nodos con 2 parametros
      * 
@@ -48,9 +48,10 @@ public class Nodos {
      * 
      * @param frecuencia
      */
-    public Nodos(int frecuencia){
+    public Nodos(int frecuencia) {
         this.frecuencia = frecuencia;
     }
+
     /**
      * Constructor vacio de la clase Nodos
      */
@@ -63,7 +64,7 @@ public class Nodos {
      * 
      * @return izquierda
      */
-    public Nodos getIzquierda(){
+    public Nodos getIzquierda() {
         return this.izquierda;
     }
 
@@ -72,21 +73,21 @@ public class Nodos {
      * 
      * @return derecha
      */
-    public Nodos getDerecha(){
+    public Nodos getDerecha() {
         return this.derecha;
     }
-    
+
     /**
      * Metodo que cambia el valor al que apunta el nodo hacia la izquierda
      */
-    public void setIzquierda(Nodos nuevaIzquierda){
+    public void setIzquierda(Nodos nuevaIzquierda) {
         this.izquierda = nuevaIzquierda;
     }
 
     /**
      * Metodo que cambia el valor al que apunta el nodo hacia la derecha
      */
-    public void setDerecha(Nodos nuevaDerecha){
+    public void setDerecha(Nodos nuevaDerecha) {
         this.derecha = nuevaDerecha;
     }
 

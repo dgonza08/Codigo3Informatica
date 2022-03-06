@@ -10,17 +10,16 @@ import java.util.LinkedList;
  * 
  */
 public class Huffman {
-    private int tipoRecorrido; // Si es binario 2, si es ternario 3 (0 equivaldria a nada)
+    // private int tipoRecorrido; // Si es binario 2, si es ternario 3 (0
+    // equivaldria a nada)
     private LinkedList<Nodos> listaNodos;
 
     /**
      * Constructor de la clase Huffman
      * 
-     * @param tipoRecorrido
      * @param listaNodos
      */
-    public Huffman(LinkedList<Nodos> listaNodos, int tipoRecorrido) {
-        this.tipoRecorrido = tipoRecorrido;
+    public Huffman(LinkedList<Nodos> listaNodos) {
         this.listaNodos = listaNodos;
     }
 
@@ -43,24 +42,6 @@ public class Huffman {
     }
 
     /**
-     * Metodo que nos permite obtener el tipo de recorrido que seguiremos
-     * 
-     * @return tipoRecorrido
-     */
-    public int getTipoRecorrido() {
-        return tipoRecorrido;
-    }
-
-    /**
-     * Metodo que nos permite cambiar el tipo de recorrido que seguiremos
-     * 
-     * @param tipoRecorrido
-     */
-    public void setTipoRecorrido(int tipoRecorrido) {
-        this.tipoRecorrido = tipoRecorrido;
-    }
-
-    /**
      * Se encarga de la realizacion del algoritmo de Huffman recorriendo
      * el arbol entero.
      * 
@@ -72,35 +53,49 @@ public class Huffman {
         if (raiz == null) {
             return;
         }
-        LinkedList<Integer> listaNuevaCodigos = raiz.getCodigo();
-        listaNuevaCodigos.add(1);
-        raiz.getIzquierda().setCodigo(listaNuevaCodigos);
-        recorrerHuffman(raiz.getIzquierda());
 
-        listaNuevaCodigos = raiz.getCodigo();
-        listaNuevaCodigos.add(0);
-        raiz.getDerecha().setCodigo(listaNuevaCodigos);
-        recorrerHuffman(raiz.getDerecha());
+        if (raiz.getCodigo() == null) {
+            raiz.setCodigo(new LinkedList<>());
+        }
+
+        if (raiz.getIzquierda() != null) {
+            LinkedList<Integer> listaNuevaCodigos = raiz.getCodigo();
+            listaNuevaCodigos.add(1);
+            raiz.getIzquierda().setCodigo(listaNuevaCodigos);
+            recorrerHuffman(raiz.getIzquierda());
+        }
+
+        if (raiz.getDerecha() != null) {
+            LinkedList<Integer> listaNuevaCodigos = raiz.getCodigo();
+            listaNuevaCodigos.add(0);
+            raiz.getDerecha().setCodigo(listaNuevaCodigos);
+            recorrerHuffman(raiz.getDerecha());
+        }
     }
 
-    public Nodos crearArbol(){
+    public Nodos crearArbol() {
         Operaciones op = new Operaciones();
         LinkedList<Nodos> listaNodosComprobar = new LinkedList<Nodos>();
+        op.rellenarListaNodosComprobar(listaNodosComprobar, this.listaNodos);
         Nodos ultimoNodo = new Nodos();
         LinkedList<Nodos> listaNodosFinal = new LinkedList<Nodos>();
-        listaNodosFinal = this.listaNodos; // Aqui se guardarian todos los nodos del arbol
+        op.rellenarListaNodosComprobar(listaNodosFinal, this.listaNodos); // Aqui se guardarian todos los nodos del
+                                                                          // arbol
 
-        while (listaNodosComprobar.size() > 1){
-            if(listaNodosComprobar.size() == 0){
-                listaNodosComprobar = this.listaNodos;
-            }
+        while (listaNodosComprobar.size() > 1) {
+            /*
+             * if (listaNodosComprobar.size() == 0) {
+             * listaNodosComprobar = this.listaNodos;
+             * }
+             */
 
             Nodos minimo1 = op.encontrarMinimo(listaNodosComprobar);
             listaNodosComprobar.remove(minimo1);
             Nodos minimo2 = op.encontrarMinimo(listaNodosComprobar);
             listaNodosComprobar.remove(minimo2);
 
-            Nodos nuevoNodo = new Nodos(minimo1.getFrecuencia() + minimo2.getFrecuencia());
+            Nodos nuevoNodo = new Nodos();
+            nuevoNodo.setFrecuencia(minimo1.getFrecuencia() + minimo2.getFrecuencia());
             listaNodosFinal.add(nuevoNodo);
             listaNodosComprobar.add(nuevoNodo);
 
@@ -109,6 +104,7 @@ public class Huffman {
 
             ultimoNodo = nuevoNodo;
         }
+        System.out.println(ultimoNodo.getFrecuencia());
         return ultimoNodo;
     }
 }

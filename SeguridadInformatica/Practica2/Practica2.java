@@ -43,9 +43,16 @@ public class Practica2 {
 
         LinkedList<Nodos> listaNodos = operaciones.rellenarListaNodos(listaFrecuencias, listaProbabilidades);
 
-        Huffman huffman = new Huffman(listaNodos, 2);
-        huffman.recorrerHuffman();
-
+        Huffman huffman = new Huffman(listaNodos);
+        Nodos nodoFinal = huffman.crearArbol();
+        System.out.println("NODO FINAL: " + nodoFinal.getFrecuencia());
+        huffman.recorrerHuffman(nodoFinal);
+        
+        System.out.print("Codigo nodo 1: "); 
+        for (int i = 0; i < listaNodos.get(0).getCodigo().size(); i++) {
+            System.out.print(listaNodos.get(0).getCodigo().get(i)); 
+        }
+        
         // ! PARA EL EJERCICIO 2
         // LinkedList<Integer> listaFrecuencias2 = new LinkedList<Integer>();
         listaFrecuencias.add(27);
@@ -71,9 +78,11 @@ public class Practica2 {
         }
 
         // ? Muestra la cadena de texto por la salida estandar(System.out)
-        /*for (int i = 0; i < cadena.length(); i++) {
-            System.out.print(cadena.charAt(i));
-        }*/
+        /*
+         * for (int i = 0; i < cadena.length(); i++) {
+         * System.out.print(cadena.charAt(i));
+         * }
+         */
 
         // * Esto es lo mismo que se hace en la practica 1, reutilizar codigo
         HashMap<Character, Float> mapa = new HashMap<Character, Float>();

@@ -66,6 +66,18 @@ public class Operaciones {
     }
 
     /**
+     * Metodo para rellenar las listas de nodos auxiliares para el algoritmo de huffman
+     * 
+     * @param listaNodosNueva
+     * @param listaNodos
+     */
+    public void rellenarListaNodosComprobar(LinkedList<Nodos> listaNodosNueva, LinkedList<Nodos> listaNodos){
+        for (int i = 0; i < listaNodos.size(); i++) {
+            listaNodosNueva.add(listaNodos.get(i));
+        }
+    }
+
+    /**
      * Da la vuelta a las palabras codigo de un nodo, ya que en el algoritmo de
      * huffman
      * lo meteria todo como nos lo dan, que es del reves
