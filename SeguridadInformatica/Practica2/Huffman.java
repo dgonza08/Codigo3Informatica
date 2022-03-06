@@ -79,15 +79,15 @@ public class Huffman {
         }
         
         if (raiz.getIzquierda() != null) {
-            LinkedList<Integer> listaNuevaCodigosIzquierda = raiz.getCodigo();
-            listaNuevaCodigosIzquierda.add(1);
+            LinkedList<Integer> listaNuevaCodigosIzquierda = new LinkedList<>(raiz.getCodigo());
+            listaNuevaCodigosIzquierda.add(0);
             raiz.getIzquierda().setCodigo(listaNuevaCodigosIzquierda);
             recorrerHuffman(raiz.getIzquierda());
         }
         
         if (raiz.getDerecha() != null) {
-            LinkedList<Integer> listaNuevaCodigosDerecha = raiz.getCodigo();
-            listaNuevaCodigosDerecha.add(0);
+            LinkedList<Integer> listaNuevaCodigosDerecha = new LinkedList<>(raiz.getCodigo());
+            listaNuevaCodigosDerecha.add(1);
             raiz.getDerecha().setCodigo(listaNuevaCodigosDerecha);
             recorrerHuffman(raiz.getDerecha());
         }
