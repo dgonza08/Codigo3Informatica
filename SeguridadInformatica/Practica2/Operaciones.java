@@ -66,6 +66,18 @@ public class Operaciones {
     }
 
     /**
+     * Metodo para rellenar las listas de nodos auxiliares para el algoritmo de huffman
+     * 
+     * @param listaNodosNueva
+     * @param listaNodos
+     */
+    public void rellenarListaNodosComprobar(LinkedList<Nodos> listaNodosNueva, LinkedList<Nodos> listaNodos){
+        for (int i = 0; i < listaNodos.size(); i++) {
+            listaNodosNueva.add(listaNodos.get(i));
+        }
+    }
+
+    /**
      * Da la vuelta a las palabras codigo de un nodo, ya que en el algoritmo de
      * huffman
      * lo meteria todo como nos lo dan, que es del reves
@@ -78,5 +90,26 @@ public class Operaciones {
             switched.add(nodo.getCodigo().get(i));
         }
         nodo.setCodigo(switched);
+    }
+
+    /**
+     * Se encarga de encontrar el valor de la frecuencia minima dentro de
+     * la lista que le pasamos como parametro
+     * 
+     * @param lista
+     * @return minimo
+     */
+    public Nodos encontrarMinimo(LinkedList<Nodos> lista){
+        Nodos minimo = new Nodos(); 
+        for (int i = 0; i < lista.size(); i++) {
+            if (i == 0) {
+                minimo = lista.get(i);
+            }else{
+                if (lista.get(i).getFrecuencia() < minimo.getFrecuencia()) {
+                    minimo = lista.get(i);
+                }
+            }
+        }
+        return minimo;
     }
 }

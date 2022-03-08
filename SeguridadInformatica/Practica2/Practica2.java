@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.LineNumberInputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -34,17 +35,36 @@ public class Practica2 {
         Operaciones operaciones = new Operaciones();
         LinkedList<Integer> listaFrecuencias = operaciones.rellenarListaFrecuenciasEnteros(listaProbabilidades);
 
-        JOptionPane.showMessageDialog(null, listaFrecuencias,
+        /*JOptionPane.showMessageDialog(null, listaFrecuencias,
                 "Lista probabilidades enteros",
-                JOptionPane.INFORMATION_MESSAGE);
-
+                JOptionPane.INFORMATION_MESSAGE);*/
+                
         // ? A partir de aqui ya habra que empezar a hacer Huffman
         // * A traves de una variable saber si es binario o ternario
 
         LinkedList<Nodos> listaNodos = operaciones.rellenarListaNodos(listaFrecuencias, listaProbabilidades);
 
-        Huffman huffman = new Huffman(listaNodos, 2);
-        huffman.recorrerHuffman();
+        Huffman huffman = new Huffman(listaNodos);
+        Nodos nodoFinal = huffman.crearArbol();
+        huffman.setRaizReal(nodoFinal);
+        System.out.println("NODO FINAL: " + nodoFinal.getFrecuencia());
+        huffman.recorrerHuffman(nodoFinal);
+        System.out.println();
+        
+        System.out.println("------------------------------------------------------");
+        System.out.println("Frecuencia " + listaNodos.get(0).getFrecuencia());
+        for (int i = 0; i < listaNodos.get(0).getCodigo().size(); i++) {
+            System.out.print(listaNodos.get(0).getCodigo().get(i)); 
+        }
+
+        System.out.println();
+
+        System.out.println("Frecuencia " + listaNodos.get(1).getFrecuencia());
+        for (int i = 0; i < listaNodos.get(1).getCodigo().size(); i++) {
+            System.out.print(listaNodos.get(1).getCodigo().get(i)); 
+        }
+
+        System.out.println();
 
         // ! PARA EL EJERCICIO 2
         // LinkedList<Integer> listaFrecuencias2 = new LinkedList<Integer>();
@@ -71,9 +91,11 @@ public class Practica2 {
         }
 
         // ? Muestra la cadena de texto por la salida estandar(System.out)
-        /*for (int i = 0; i < cadena.length(); i++) {
-            System.out.print(cadena.charAt(i));
-        }*/
+        /*
+         * for (int i = 0; i < cadena.length(); i++) {
+         * System.out.print(cadena.charAt(i));
+         * }
+         */
 
         // * Esto es lo mismo que se hace en la practica 1, reutilizar codigo
         HashMap<Character, Float> mapa = new HashMap<Character, Float>();
