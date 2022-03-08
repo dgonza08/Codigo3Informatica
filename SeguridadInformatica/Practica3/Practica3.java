@@ -20,7 +20,7 @@ public class Practica3{
             System.out.println(key + ": " + mapa.get(key));
         }
 
-        int n = mapa.size();
+        double n = (double) mapa.size();
         System.out.println("\nN: " + n + "\n");
 
         HashMap<String, Double> segmentos = op.dividirSegmentos(mapa, n);

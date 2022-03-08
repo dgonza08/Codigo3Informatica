@@ -23,10 +23,12 @@ public class Operaciones {
         return frecuencias;
     }
 
-    public HashMap<String, Double> dividirSegmentos(HashMap<String, Integer> mapa, int n) {
+    public HashMap<String, Double> dividirSegmentos(HashMap<String, Integer> mapa, Double n) {
         HashMap<String, Double> segmentos = new HashMap<>();
-        double tamanyoIntervalo = (double) 1 / n;
-        double aux = 0.0;
+        
+        Double tamanyoIntervalo = 1/n;  
+        
+        Double aux = 0.0;
 
         for (String key : mapa.keySet()) {
             segmentos.put(key, aux);
