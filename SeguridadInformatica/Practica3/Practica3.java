@@ -21,7 +21,6 @@ public class Practica3{
         }
 
         double n = (double) mapa.size();
-        System.out.println("\nN: " + n + "\n");
 
         HashMap<String, Double> segmentos = op.dividirSegmentos(mapa, n);
 
