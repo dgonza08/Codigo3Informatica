@@ -14,18 +14,39 @@ public class Practica3{
         Operaciones op = new Operaciones();
         op.rellenarLista(fuenteSplit, fuente);
 
+        System.out.println("Tamanyo de la fuente: " + fuente.size());
+
         HashMap<String, Integer> mapa = op.frecuencia(fuente);
 
-        for (String key : mapa.keySet()) {
-            System.out.println(key + ": " + mapa.get(key));
-        }
-
-        double n = (double) mapa.size();
+        double n = mapa.size();
 
         HashMap<String, Double> segmentos = op.dividirSegmentos(mapa, n);
 
         for (String key : segmentos.keySet()) {
             System.out.println(key + ": " + segmentos.get(key));
         }
+
+        // Calculo de la entropia
+        // Primera parte: Crear mapa de informacion y de probabilidad de emision 
+        HashMap<String, Double> mapaInformacion = new HashMap<>();
+        // Cantidad de informacion de los caracteres
+        for (String clave : mapa.keySet()) {
+            double valor = mapa.get(clave);
+            mapaInformacion.put(clave, -new Operaciones().log(valor / (n), 2));
+        }
+        
+        HashMap<String, Double> mapaProbabilidadEmision = new HashMap<>();
+        for (String clave : mapa.keySet()) {
+            double valor = mapa.get(clave);
+            mapaProbabilidadEmision.put(clave, valor / fuente.size());
+        }
+
+        // Segunda parte: Calcular la entropia a traves del mapa de probabilidad de emision
+        double entropia = 0f;
+        for (String clave : mapaProbabilidadEmision.keySet()) {
+            double probabilidadDeEmision = mapaProbabilidadEmision.get(clave);
+            entropia += (probabilidadDeEmision * mapaInformacion.get(clave));
+        }
+        System.out.println("Entropia de la fuente: " + entropia + "\n");
     }
 }

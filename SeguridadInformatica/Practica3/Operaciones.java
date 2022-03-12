@@ -5,6 +5,10 @@ public class Operaciones {
     public Operaciones() {
     }
 
+    public double log(double x, double base) {
+        return (Math.log10(x) / Math.log10(base));
+    }
+
     public void rellenarLista(String[] fuenteSplit, List<String> fuente) {
         for (int i = 0; i < fuenteSplit.length; i++) {
             fuente.add(fuenteSplit[i]);
@@ -35,5 +39,9 @@ public class Operaciones {
             aux = segmentos.get(key) + tamanyoIntervalo;
         }
         return segmentos;
+    }
+
+    public void entropia(){
+
     }
 }

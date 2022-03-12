@@ -40,7 +40,7 @@ public class Practica1 {
         System.out.println("Saltos de linea: " + contadorSaltosLinea + "\n");
 
         // Frecuencia absoluta d
-        System.out.println("La frecuendia absoluta de d es: " + mapa.get('d') + "\n");
+        System.out.println("La frecuencia absoluta de d es: " + mapa.get('d') + "\n");
 
         // Probabilidad de d
         System.out.println("La probabilidad de d es: " + mapa.get('d') / (total + (contadorSaltosLinea * 2)) + "\n");
