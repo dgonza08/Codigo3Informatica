@@ -1,13 +1,24 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Dividiremos el intervalo de 0 a 1 en n intervalos de igual longitud.
  */
 public class Practica3{
-    public static void main(String[] args) {
-        String fuenteInicial = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ .";
+    public static void main(String[] args) throws FileNotFoundException {
+        File archivo = new File("CosaMisteriosa.txt");
+        Scanner sc = new Scanner(archivo);
+        int contadorSaltosLinea = 0;
+        String fuenteInicial = "";
+        while (sc.hasNext()) {
+            fuenteInicial += sc.nextLine();
+            contadorSaltosLinea++;
+        }
+        //String fuenteInicial = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ .";
         String[] fuenteSplit = fuenteInicial.split("");
         List<String> fuente = new LinkedList<>();
 
