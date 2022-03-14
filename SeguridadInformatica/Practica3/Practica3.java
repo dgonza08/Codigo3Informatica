@@ -18,6 +18,22 @@ public class Practica3{
             fuenteInicial += sc.nextLine();
             contadorSaltosLinea++;
         }
+
+        HashMap<Character, Float> mapa = new HashMap<Character, Float>();
+        for (int j = 0; j < fuenteInicial.length(); j++) {
+            Character caracter = fuenteInicial.charAt(j);
+            Float contador = 0f;
+            for (int k = 0; k < fuenteInicial.length(); k++) {
+                if (caracter == fuenteInicial.charAt(k)) {
+                    contador++;
+                }
+                mapa.put(caracter, contador);
+            }
+            if (caracter == ' ') {
+                mapa.put(caracter, contador += (contadorSaltosLinea * 2));
+            }
+        }
+
         //String fuenteInicial = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ .";
         String[] fuenteSplit = fuenteInicial.split("");
         List<String> fuente = new LinkedList<>();
@@ -27,11 +43,11 @@ public class Practica3{
 
         System.out.println("Tamanyo de la fuente: " + fuente.size());
 
-        HashMap<String, Integer> mapa = op.frecuencia(fuente);
+        HashMap<String, Integer> mapa1 = op.frecuencia(fuente);
 
-        double n = mapa.size();
+        double n = mapa1.size();
 
-        HashMap<String, Double> segmentos = op.dividirSegmentos(mapa, n);
+        HashMap<String, Double> segmentos = op.dividirSegmentos(mapa1, n);
 
         for (String key : segmentos.keySet()) {
             System.out.println(key + ": " + segmentos.get(key));
@@ -41,14 +57,14 @@ public class Practica3{
         // Primera parte: Crear mapa de informacion y de probabilidad de emision 
         HashMap<String, Double> mapaInformacion = new HashMap<>();
         // Cantidad de informacion de los caracteres
-        for (String clave : mapa.keySet()) {
-            double valor = mapa.get(clave);
+        for (String clave : mapa1.keySet()) {
+            double valor = mapa1.get(clave);
             mapaInformacion.put(clave, -new Operaciones().log(valor / (n), 2));
         }
         
         HashMap<String, Double> mapaProbabilidadEmision = new HashMap<>();
-        for (String clave : mapa.keySet()) {
-            double valor = mapa.get(clave);
+        for (String clave : mapa1.keySet()) {
+            double valor = mapa1.get(clave);
             mapaProbabilidadEmision.put(clave, valor / fuente.size());
         }
 
@@ -59,5 +75,7 @@ public class Practica3{
             entropia += (probabilidadDeEmision * mapaInformacion.get(clave));
         }
         System.out.println("Entropia de la fuente: " + entropia + "\n");
+
+        sc.close();
     }
 }
