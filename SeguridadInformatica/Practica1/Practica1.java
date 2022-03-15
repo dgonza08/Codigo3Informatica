@@ -6,7 +6,7 @@ public class Practica1 {
     private static int SALIDA = 0;
 
     public static void main(String[] args) throws FileNotFoundException {
-        File archivo = new File("datos_1.txt");
+        File archivo = new File("datos_prueba.txt");
         Scanner sc = new Scanner(archivo);
 
         String cadena = "";
@@ -32,6 +32,12 @@ public class Practica1 {
             if (caracter == ' ') {
                 mapa.put(caracter, contador += (contadorSaltosLinea * 2));
             }
+        }
+
+        // CUESTIONARIO 1
+        System.out.println("Alfabeto:");
+        for(Character clave:mapa.keySet()){
+            System.out.print(clave+" ");
         }
 
         System.out.println("\nMapa de caracteres: " + mapa + "\n");
