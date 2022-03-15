@@ -6,16 +6,3 @@ como si las notas musicales hicieran una suerte de parén-
 tesis en el tiempo, una suspensión, otro lugar aquí mismo,
 un siempre en el jamás.
 (LA ELEGANCIA DEL ERIZO, Muriel Barbery)
-
-Entropia: 4.435253436819342 
-
-longitud binaria de f: 4.474201474201 -> 18021/407
-
-Eficacia: 0.99129497....
-
-* Pensando
-* sante de paréntesis
-* Eso es, siempre en el jamás, la belleza en este mundo.
-
-Intervalo: [43/407,67/407] con decimales: 0.1056511056511.... L
-                                          0.1646191649.... H

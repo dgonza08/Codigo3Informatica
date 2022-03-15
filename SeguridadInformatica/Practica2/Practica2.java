@@ -1,11 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.LineNumberInputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
-
-import javax.swing.JOptionPane;
 
 /**
  * @author David Gonzalez Alvarez
@@ -16,29 +13,67 @@ import javax.swing.JOptionPane;
  */
 public class Practica2 {
     public static void main(String[] args) throws FileNotFoundException {
-        File archivo = new File("datos_2.txt");
+        File archivo = new File("datos_cuestionario.txt");
         Scanner sc = new Scanner(archivo);
 
-        // ! PARA EL EJERCICIO 1
+        // ? Parte del cuestionario
+        String cadena = "";
+        int contadorSaltosLinea = -1;
+
+        while (sc.hasNext()) {
+            cadena += sc.nextLine();
+            contadorSaltosLinea++;
+        }
+
+        float total = cadena.length();
+
+        HashMap<Character, Float> mapa = new HashMap<Character, Float>();
+        for (int j = 0; j < cadena.length(); j++) {
+            Character caracter = cadena.charAt(j);
+            Float contador = 0f;
+            for (int k = 0; k < cadena.length(); k++) {
+                if (caracter == cadena.charAt(k)) {
+                    contador++;
+                }
+                mapa.put(caracter, contador);
+            }
+            if (caracter == ' ') {
+                mapa.put(caracter, contador += (contadorSaltosLinea * 2));
+            }
+        }
+
+        HashMap<Character, Float> mapaProbabilidades = new HashMap<Character, Float>();
+        for (Character caracter : mapa.keySet()) {
+            mapaProbabilidades.put(caracter, mapa.get(caracter) / (total + contadorSaltosLinea * 2));
+        }
+
         LinkedList<Float> listaProbabilidades = new LinkedList<Float>();
-        listaProbabilidades.add(0.3f);
-        listaProbabilidades.add(0.2f);
-        listaProbabilidades.add(0.1f);
-        listaProbabilidades.add(0.1f);
-        listaProbabilidades.add(0.05f);
-        listaProbabilidades.add(0.05f);
-        listaProbabilidades.add(0.05f);
-        listaProbabilidades.add(0.05f);
-        listaProbabilidades.add(0.05f);
-        listaProbabilidades.add(0.05f);
+        for (Character caracter : mapaProbabilidades.keySet()) {
+            listaProbabilidades.add(mapa.get(caracter) / (total + contadorSaltosLinea * 2));
+        }
+
+        // ! PARA EL EJERCICIO 1
+        // LinkedList<Float> listaProbabilidades = new LinkedList<Float>();
+        // listaProbabilidades.add(0.3f);
+        // listaProbabilidades.add(0.2f);
+        // listaProbabilidades.add(0.1f);
+        // listaProbabilidades.add(0.1f);
+        // listaProbabilidades.add(0.05f);
+        // listaProbabilidades.add(0.05f);
+        // listaProbabilidades.add(0.05f);
+        // listaProbabilidades.add(0.05f);
+        // listaProbabilidades.add(0.05f);
+        // listaProbabilidades.add(0.05f);
 
         Operaciones operaciones = new Operaciones();
         LinkedList<Integer> listaFrecuencias = operaciones.rellenarListaFrecuenciasEnteros(listaProbabilidades);
 
-        /*JOptionPane.showMessageDialog(null, listaFrecuencias,
-                "Lista probabilidades enteros",
-                JOptionPane.INFORMATION_MESSAGE);*/
-                
+        /*
+         * JOptionPane.showMessageDialog(null, listaFrecuencias,
+         * "Lista probabilidades enteros",
+         * JOptionPane.INFORMATION_MESSAGE);
+         */
+
         // ? A partir de aqui ya habra que empezar a hacer Huffman
         // * A traves de una variable saber si es binario o ternario
 
@@ -50,18 +85,24 @@ public class Practica2 {
         System.out.println("NODO FINAL: " + nodoFinal.getFrecuencia());
         huffman.recorrerHuffman(nodoFinal);
         System.out.println();
-        
+
         System.out.println("------------------------------------------------------");
         System.out.println("Frecuencia " + listaNodos.get(0).getFrecuencia());
         for (int i = 0; i < listaNodos.get(0).getCodigo().size(); i++) {
-            System.out.print(listaNodos.get(0).getCodigo().get(i)); 
+            System.out.print(listaNodos.get(0).getCodigo().get(i));
         }
 
         System.out.println();
 
-        System.out.println("Frecuencia " + listaNodos.get(1).getFrecuencia());
-        for (int i = 0; i < listaNodos.get(1).getCodigo().size(); i++) {
-            System.out.print(listaNodos.get(1).getCodigo().get(i)); 
+        for (int i = 0; i < listaNodos.size(); i++) {
+            System.out.print(listaNodos.get(i).getCodigo());
+        }
+
+        String codigo = "[0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0][0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1][0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0][0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1][0, 0, 1, 1, 1, 1, 0][0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0][0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1][0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0][0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1][0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0][0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1][0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0][0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1][0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0][1, 0][0, 0, 0, 0][0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1][0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0][1, 1, 0, 1, 0][1, 1, 0, 1, 1][0, 1, 0][0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1][1, 1, 1, 1, 1, 0][1, 1, 1, 1, 1, 1][0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0][1, 1, 0, 0][0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1][0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0][0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1][0, 0, 1, 1, 1, 0][0, 0, 1, 1, 0][0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0][0, 0, 0, 1, 0][0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1][0, 1, 1, 0][0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0][0, 1, 1, 1][1, 1, 1, 0, 0][0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1][1, 1, 1, 0, 1][0, 0, 1, 0][0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0][1, 1, 1, 1, 0][0, 0, 0, 1, 1][0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1][0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0][0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1][0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0]";
+        String[] codigo1 = codigo.split(", ");
+
+        for (int i = 0; i < codigo1.length; i++) {
+            System.out.print(codigo1[i]);
         }
 
         System.out.println();
@@ -82,8 +123,8 @@ public class Practica2 {
         listaFrecuencias.add(7);
 
         // ! PARA EL EJERCICIO 3
-        int contadorSaltosLinea = -1;
-        String cadena = "";
+        // int contadorSaltosLinea = -1;
+        // String cadena = "";
 
         while (sc.hasNext()) {
             cadena += sc.nextLine();
@@ -98,20 +139,22 @@ public class Practica2 {
          */
 
         // * Esto es lo mismo que se hace en la practica 1, reutilizar codigo
-        HashMap<Character, Float> mapa = new HashMap<Character, Float>();
-        for (int j = 0; j < cadena.length(); j++) {
-            Character caracter = cadena.charAt(j);
-            Float contador = 0f;
-            for (int k = 0; k < cadena.length(); k++) {
-                if (caracter == cadena.charAt(k)) {
-                    contador++;
-                }
-                mapa.put(caracter, contador);
-            }
-            if (caracter == ' ') {
-                mapa.put(caracter, contador += (contadorSaltosLinea * 2));
-            }
-        }
+        /*
+         * HashMap<Character, Float> mapa = new HashMap<Character, Float>();
+         * for (int j = 0; j < cadena.length(); j++) {
+         * Character caracter = cadena.charAt(j);
+         * Float contador = 0f;
+         * for (int k = 0; k < cadena.length(); k++) {
+         * if (caracter == cadena.charAt(k)) {
+         * contador++;
+         * }
+         * mapa.put(caracter, contador);
+         * }
+         * if (caracter == ' ') {
+         * mapa.put(caracter, contador += (contadorSaltosLinea * 2));
+         * }
+         * }
+         */
 
         sc.close();
     }
