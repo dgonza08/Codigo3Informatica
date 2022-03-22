@@ -46,6 +46,7 @@ public class main {
             System.out.println(key + ": " + mapaBinario.get(key));
         }
 
+        // Ejemplo de una codificacion con el algoritmo anterior
         String cadena = "c!";
         String[] cadenaSplit = cadena.split("");
 
@@ -59,5 +60,10 @@ public class main {
             }
         }
         System.out.println("Codificacion lineal: " + codificacion);
+
+        int matrizIdentidad[][] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+        int matrizGeneradora[][] = {{1, 1, 0}, {1, 0, 1}, {0, 1, 1}};
+
+        
     }
 }
