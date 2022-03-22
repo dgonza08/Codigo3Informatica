@@ -29,7 +29,7 @@ public class main {
 
         System.out.println("Longitud minima: " + longMinima);
 
-        HashMap<String, String> mapaBinario= new HashMap<String, String>();
+        HashMap<String, String> mapaBinario = new HashMap<String, String>();
 
         for (String key : mapa.keySet()) {
             mapaBinario.put(key, op.toBinario(mapa.get(key)));
@@ -42,7 +42,7 @@ public class main {
             }
         }
 
-        for(String key : mapaBinario.keySet()){
+        for (String key : mapaBinario.keySet()) {
             System.out.println(key + ": " + mapaBinario.get(key));
         }
 
@@ -53,17 +53,26 @@ public class main {
         String codificacion = "";
 
         for (int i = 0; i < cadenaSplit.length; i++) {
-            for(String key: mapaBinario.keySet()){
+            for (String key : mapaBinario.keySet()) {
                 if (key.equals(cadenaSplit[i])) {
                     codificacion += mapaBinario.get(key);
-                } 
+                }
             }
         }
         System.out.println("Codificacion lineal: " + codificacion);
 
-        int matrizIdentidad[][] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
-        int matrizGeneradora[][] = {{1, 1, 0}, {1, 0, 1}, {0, 1, 1}};
+        int matrizIdentidad[][] = { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
+        int matrizGeneradora[][] = { { 1, 1, 0 }, { 1, 0, 1 }, { 0, 1, 1 } };
 
-        
+        int matrizResultante[][] = op.construirMatrizGI(matrizIdentidad, matrizGeneradora);
+        System.out.println("Matriz resultante: " + matrizResultante.length);
+
+        for (int i = 0; i < matrizResultante.length; i++) {
+            System.out.println();
+            for (int j = 0; j < matrizResultante[i].length; j++) {
+                System.out.print(matrizResultante[i][j] + " ");
+            }
+        }
+        sc.close();
     }
 }
